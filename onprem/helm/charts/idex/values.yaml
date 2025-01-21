@@ -1,0 +1,158 @@
+# -- Number of replicas for the deployment
+replicaCount: 1
+# -- Additional labels for the deployment
+labels: {}
+# -- Additional labels for the pods
+podLabels: {}
+# Resource requests and limits for the container
+resources:
+  limits:
+    # -- Maximum CPU allocation
+    cpu: 200m
+    # -- Maximum memory allocation
+    memory: 256Mi
+  requests:
+    # -- Requested CPU allocation
+    cpu: 100m
+    # -- Requested memory allocation
+    memory: 128Mi
+# -- Liveness probe configuration. If empty uses default grpc health probe
+livenessProbe: {}
+# -- Readiness probe configuration. If empty uses default grpc health probe
+readinessProbe: {}
+# -- Extra environment variables for the container
+env: []
+image:
+  # -- Container image repository
+  repository: us-central1-docker.pkg.dev/idnorm/idnorm-pub/ddx
+  # -- Container image tag
+  tag: v1.8.1
+  # -- Container image pull policy
+  pullPolicy: IfNotPresent
+# HPA configurations
+hpa:
+  # -- set to true to enable HPA
+  enabled: false
+  # -- HPA min replicas
+  minReplicas: 1
+  # -- HPA max replicas
+  maxReplicas: 10
+  # -- Target CPU utilization percentage
+  targetCPUUtilizationPercentage: 80
+  # -- Target memory utilization percentage
+  targetMemoryUtilizationPercentage: 80
+  # -- Optional custom labels for HPA
+  labels: {}
+  # -- Optional custom annotations for HPA
+  annotations: {}
+service:
+  # -- Kubernetes Service type
+  type: ClusterIP
+  # -- Service ports
+  ports:
+    http: 8000
+    grpc: 8005
+  # -- Node ports to expose
+  nodePorts:
+    http: ""
+    grpc: ""
+  # -- ClusterIP if service type is ClusterIP
+  clusterIP: ""
+  # -- LoadBalancer IP if service type is LoadBalancer
+  loadBalancerIP: ""
+  # -- Load Balancer sources
+  loadBalancerSourceRanges: []
+  # -- Additional labels for the service
+  labels: {}
+  # -- Additional annotations for the service
+  annotations: {}
+# Ingress configuration
+ingress:
+  # -- Enable ingress controller resource
+  enabled: false
+  # -- IngressClass that will be be used
+  className: "nginx"
+  # -- Additional annotations for the Ingress resource
+  annotations:
+    external-dns.custom.kubernetes.io/zone: public
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  # -- Hostname to be used for the ingress
+  host: idex.example.com
+  # -- Enable TLS configuration for the hostname
+  tls: false
+# -- KNative pod autoscaling
+kpa:
+  # -- Enable knative pod autoscaling
+  enabled: true
+  # -- Enable HTTP, exposes gRPC only otherwise
+  http: false
+  autoscaling:
+    # -- Metric type for autoscaling (concurrency or rps)
+    metricType: concurrency
+    # -- Target number of concurrent requests
+    target: 5
+    # -- Target utilization percentage
+    targetUtilizationPercentage: 80
+    # -- Minimum number of replicas, keep 0 to scale to zero when there is no traffic
+    minScale: 0
+    # -- Maximum number of replicas
+    maxScale: 5
+    # -- Initial number of replicas
+    initialScale: 1
+    # -- Delay before scaling down
+    scaleDownDelay: 1m
+    # -- Grace period before scaling to zero
+    scaleToZeroGracePeriod: 30s
+    # -- Window for averaging metrics
+    stableWindow: 30s
+# -- Values for serving-chart dependency
+serving-chart:
+  global:
+    image:
+      # -- Name of the repository to pull serving image from
+      name: us-central1-docker.pkg.dev/idnorm/idnorm-pub/serving
+      # -- Tag to specify the image used. Depending on expected CPU architecture one should update the suffix (haswell, skylake, skylake-avx512, icelake)
+      tag: v0.1.1-skylake
+    modelStorage:
+      gc:
+        # -- Bucket with models
+        bucket: idnorm-models-enc
+  deployments:
+    # Name can be empty, if empty models list must contain a single model and it will then ust its ID as name
+    - name: extraction
+      # -- List of models
+      models:
+        - f4e44a731f7df858
+        - 6f697701fc10ce13
+        - fc0dfb12fad78f07
+        - 750dac66af62e6b2
+        - 2ac3470c50c2bd40
+        - 26a3a230499ebb48
+        - 077c98276e7ae1a0
+        - ba5c6de27f689d2d
+        - 3c27c64bd11d5643
+      # configure deployments HPA
+      hpa:
+        # -- set to true to enable HPA, by default off and is using knative
+        enabled: false
+      # Can override global.knative
+      knative:
+        enabled: true
+        autoscaling:
+          scaleDownDelay: 10m
+          scaleToZeroGracePeriod: 10m
+      # -- Resource settings for deployment, configure with regards to your environment needs
+      resources:
+        # -- Resource requests for deployment
+        requests:
+          # -- Requested CPU allocation
+          cpu: 100m
+          # -- Requested memory allocation
+          memory: 100Mi
+        # -- Resource limits for deployment
+        limits:
+          # -- Maximum CPU allocation
+          cpu: 2000m
+          # -- Maximum memory allocation
+          memory: 2000Mi

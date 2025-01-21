@@ -1,0 +1,74 @@
+services:
+  model-dl:
+    image: google/cloud-sdk:slim
+    container_name: model-dl
+    volumes:
+      - models_enc:/models
+    entrypoint: /bin/bash
+    command: -c "
+      if [ ! -d /models/f4e44a731f7df858 ] && \
+      [ ! -d /models/6f697701fc10ce13 ] && \
+      [ ! -d /models/fc0dfb12fad78f07 ] && \
+      [ ! -d /models/750dac66af62e6b2 ] && \
+      [ ! -d /models/2ac3470c50c2bd40 ] && \
+      [ ! -d /models/26a3a230499ebb48 ] && \
+      [ ! -d /models/077c98276e7ae1a0 ] && \
+      [ ! -d /models/ba5c6de27f689d2d ] && \
+      [ ! -d /models/3c27c64bd11d5643 ]; then \
+      gsutil -m cp -r \
+      gs://idnorm-models-enc/f4e44a731f7df858 \
+      gs://idnorm-models-enc/6f697701fc10ce13 \
+      gs://idnorm-models-enc/fc0dfb12fad78f07 \
+      gs://idnorm-models-enc/750dac66af62e6b2 \
+      gs://idnorm-models-enc/2ac3470c50c2bd40 \
+      gs://idnorm-models-enc/26a3a230499ebb48 \
+      gs://idnorm-models-enc/077c98276e7ae1a0 \
+      gs://idnorm-models-enc/ba5c6de27f689d2d \
+      gs://idnorm-models-enc/3c27c64bd11d5643 \
+      /models; \
+      else \
+      echo 'All model folders already exist, skipping copy.'; \
+      fi"
+
+  serving:
+    image: us-central1-docker.pkg.dev/idnorm/idnorm-pub/serving:v0.1.1-skylake
+    depends_on:
+      model-dl:
+        condition: service_completed_successfully
+    container_name: serving
+    environment:
+      VD_DEC: "1"
+    command:
+      - "--model_config_file=/config/model-config"
+      # setting this to expected number of max concurrent requests
+      - "--tensorflow_inter_op_parallelism=4"
+      # number of CPUs seems to be a good value
+      - "--tensorflow_intra_op_parallelism=2"
+      # setting this to expected number of max concurrent requests x 2 to
+      # adjust for "waiting" for resources to become available
+      - "--grpc_max_threads=60"
+    ports:
+      - "8500:8500" # Expose port 8500 (default port for TensorFlow Serving gRPC)
+    volumes:
+      - models_enc:/models # Use named volume 'models' instead of host mount
+      - ./models.config:/config/model-config:ro
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+          cpus: 2.0
+
+  extraction:
+    image: us-central1-docker.pkg.dev/idnorm/idnorm-pub/idex:v${IDEX_VERSION}
+    container_name: extraction
+    depends_on:
+      - serving
+    command: ["--serving-url", "serving:8500"]
+    environment:
+      IDEX_LICENSE_KEY: "${IDEX_LICENSE_KEY}"
+    ports:
+      - "${IDEX_GRPC_PORT}:8005" # grpc
+      - "${IDEX_HTTP_PORT}:8000" # http
+
+volumes:
+  models_enc:

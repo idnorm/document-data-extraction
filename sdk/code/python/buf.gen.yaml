@@ -1,0 +1,8 @@
+version: v2
+plugins:
+  - remote: buf.build/grpc/python:v1.67.1
+    out: idnorm_ddx
+  - remote: buf.build/protocolbuffers/python:v28.3
+    out: idnorm_ddx
+  - remote: buf.build/protocolbuffers/pyi:v28.3
+    out: idnorm_ddx

@@ -1,0 +1,104 @@
+{{- if .Values.kpa.enabled }}
+{{ if .Values.hpa.enabled }}
+{{- fail (printf "Error: HPA and Knative cannot be enabled simultaneously. Please disable one of them.") }}
+{{- end -}}
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  namespace: {{ include "common.names.namespace" . }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.kpa.labels }}
+    {{- include "common.tplvalues.render" (dict "value" .Values.kpa.labels "context" $) | nindent 4 }}
+    {{- end }}
+  {{- if .Values.kpa.annotations }}
+  annotations: {{- include "common.tplvalues.render" (dict "value" .Values.kpa.annotations "context" $) | nindent 4 }}
+  {{- end }}
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/metric: "{{ .Values.kpa.autoscaling.metricType }}" # e.g., concurrency, cpu
+        autoscaling.knative.dev/target: "{{ .Values.kpa.autoscaling.target }}" # Target concurrency or CPU
+        autoscaling.knative.dev/target-utilization-percentage: "{{ .Values.kpa.autoscaling.targetUtilizationPercentage }}" # Utilization percentage
+        autoscaling.knative.dev/min-scale: "{{ .Values.kpa.autoscaling.minScale }}" # Minimum scale (0 to allow scaling to zero)
+        autoscaling.knative.dev/max-scale: "{{ .Values.kpa.autoscaling.maxScale }}" # Maximum scale
+        autoscaling.knative.dev/initial-scale: "{{ .Values.kpa.autoscaling.initialScale }}" # Initial scale
+        autoscaling.knative.dev/scale-down-delay: "{{ .Values.kpa.autoscaling.scaleDownDelay }}" # Delay before scaling down
+        autoscaling.knative.dev/scale-to-zero-pod-retention-period: "{{ .Values.kpa.autoscaling.scaleToZeroGracePeriod }}" # Grace period for scaling to zero (seconds)
+        autoscaling.knative.dev/window: "{{ .Values.kpa.autoscaling.stableWindow }}" # Window for scaling stability
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: h2c
+              containerPort: {{ .Values.service.ports.grpc }}
+              protocol: TCP
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- include "common.tplvalues.render" (dict "value" .Values.livenessProbe "context" $) | nindent 12 }}
+          {{- end }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            {{- include "common.tplvalues.render" (dict "value" .Values.readinessProbe "context" $) | nindent 12 }}
+          {{- end }}
+          env:
+            {{- include "common.tplvalues.render" (dict "value" .Values.env "context" $) | nindent 12 }}
+          args:
+            {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
+
+{{ if .Values.kpa.http }}
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" . }}-http
+  namespace: {{ include "common.names.namespace" . }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.kpa.labels }}
+    {{- include "common.tplvalues.render" (dict "value" .Values.kpa.labels "context" $) | nindent 4 }}
+    {{- end }}
+  {{- if .Values.kpa.annotations }}
+  annotations: {{- include "common.tplvalues.render" (dict "value" .Values.kpa.annotations "context" $) | nindent 4 }}
+  {{- end }}
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/metric: "{{ .Values.kpa.autoscaling.metricType }}" # e.g., concurrency, cpu
+        autoscaling.knative.dev/target: "{{ .Values.kpa.autoscaling.target }}" # Target concurrency or CPU
+        autoscaling.knative.dev/target-utilization-percentage: "{{ .Values.kpa.autoscaling.targetUtilizationPercentage }}" # Utilization percentage
+        autoscaling.knative.dev/min-scale: "{{ .Values.kpa.autoscaling.minScale }}" # Minimum scale (0 to allow scaling to zero)
+        autoscaling.knative.dev/max-scale: "{{ .Values.kpa.autoscaling.maxScale }}" # Maximum scale
+        autoscaling.knative.dev/initial-scale: "{{ .Values.kpa.autoscaling.initialScale }}" # Initial scale
+        autoscaling.knative.dev/scale-down-delay: "{{ .Values.kpa.autoscaling.scaleDownDelay }}" # Delay before scaling down
+        autoscaling.knative.dev/scale-to-zero-pod-retention-period: "{{ .Values.kpa.autoscaling.scaleToZeroGracePeriod }}" # Grace period for scaling to zero (seconds)
+        autoscaling.knative.dev/window: "{{ .Values.kpa.autoscaling.stableWindow }}" # Window for scaling stability
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http1
+              containerPort: {{ .Values.service.ports.http }}
+              protocol: TCP
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- include "common.tplvalues.render" (dict "value" .Values.livenessProbe "context" $) | nindent 12 }}
+          {{- end }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            {{- include "common.tplvalues.render" (dict "value" .Values.readinessProbe "context" $) | nindent 12 }}
+          {{- end }}
+          env:
+            {{- include "common.tplvalues.render" (dict "value" .Values.env "context" $) | nindent 12 }}
+          args:
+            {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
+
+{{ end }}
+{{- end }}

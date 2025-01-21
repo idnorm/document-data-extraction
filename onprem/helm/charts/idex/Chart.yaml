@@ -1,0 +1,11 @@
+apiVersion: v2
+name: id-extract-service
+description: A Helm chart for Kubernetes
+version: 0.1.0
+dependencies:
+  - name: common
+    version: 2.x.x
+    repository: oci://registry-1.docker.io/bitnamicharts
+  - name: serving-chart
+    version: 0.1.13
+    repository: oci://us-central1-docker.pkg.dev/idnorm/charts

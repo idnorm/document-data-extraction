@@ -1,0 +1,81 @@
+{{ if and .Values.ingress.enabled .Values.kpa.enabled }}
+{{ $name := include "common.names.fullname" . }}
+{{ $namespace := include "common.names.namespace" . }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grpc-{{ $name }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+    nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+    nginx.ingress.kubernetes.io/upstream-vhost: {{ $name }}.{{ $namespace }}.svc.cluster.local
+  {{- end }}
+spec:
+  {{- if .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className }}
+  {{- end }}
+  {{- if .Values.ingress.tls }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host | quote }}
+        {{- end }}
+      secretName: {{ .Values.ingress.host }}
+  rules:
+    - host: {{ .Values.ingress.host | quote }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "common.names.fullname" $ }}
+                port: 
+                  number: 80
+{{ if .Values.kpa.http }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: http-{{ $name }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+    nginx.ingress.kubernetes.io/upstream-vhost: {{ $name }}-http.{{ $namespace }}.svc.cluster.local
+  {{- end }}
+spec:
+  {{- if .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className }}
+  {{- end }}
+  {{- if .Values.ingress.tls }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host | quote }}
+        {{- end }}
+      secretName: {{ .Values.ingress.host }}
+  rules:
+    - host: {{ .Values.ingress.host | quote }}
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "common.names.fullname" $ }}-http
+                port: 
+                  number: 80
+          - path: /demo.html
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "common.names.fullname" $ }}-http
+                port: 
+                  number: 80
+{{ end }}
+{{ end }}
