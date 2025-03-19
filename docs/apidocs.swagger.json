@@ -1,0 +1,1417 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/ddx/v1/barcode.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Extraction"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/scan": {
+      "post": {
+        "summary": "Detects document on a given image and extracts all relevant fields. For input parameters\nsee ScanDocumentRequest Model documentation (in swagger, click on the \"Model\" in the request \"Body\" part)",
+        "operationId": "Extraction_ScanDocument",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ScanDocumentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ScanDocumentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Extraction"
+        ]
+      }
+    },
+    "/api/v1/scanTwoSided": {
+      "post": {
+        "summary": "Expects two images, one for front side of the document and one for back side of the document.\nScans both sides and extracts all relevant fields.\nsee ScanTwoSidedDocumentRequest Model documentation (in swagger, click on the \"Model\" in the request \"Body\" part)",
+        "operationId": "Extraction_ScanTwoSidedDocument",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ScanTwoSidedDocumentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ScanTwoSidedDocumentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Extraction"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "DateFieldDate": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "format": "int32",
+          "title": "year, -1 if the information is not present in the document"
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32",
+          "title": "month, -1 if the information is not present in the document"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32",
+          "title": "day, -1 if the information is not present in the document"
+        }
+      },
+      "title": "Date - message representing parsed date"
+    },
+    "Pdf417BarcodeOptionalField": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/Pdf417BarcodeOptionalFieldType"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "description": "Message representing an optional field with its type and value."
+    },
+    "Pdf417BarcodeOptionalFieldType": {
+      "type": "string",
+      "enum": [
+        "OPTIONAL_FIELD_TYPE_ADDRESS_STREET_2",
+        "OPTIONAL_FIELD_TYPE_HAIR_COLOR",
+        "OPTIONAL_FIELD_TYPE_PLACE_OF_BIRTH",
+        "OPTIONAL_FIELD_TYPE_AUDIT_INFORMATION",
+        "OPTIONAL_FIELD_TYPE_INVENTORY_CONTROL_NUMBER",
+        "OPTIONAL_FIELD_TYPE_ALIAS_FAMILY_NAME",
+        "OPTIONAL_FIELD_TYPE_ALIAS_GIVEN_NAME",
+        "OPTIONAL_FIELD_TYPE_ALIAS_SUFFIX_NAME",
+        "OPTIONAL_FIELD_TYPE_NAME_SUFFIX",
+        "OPTIONAL_FIELD_TYPE_PHYSICAL_DESCRIPTION_WEIGHT_RANGE",
+        "OPTIONAL_FIELD_TYPE_RACE_ETHNICITY",
+        "OPTIONAL_FIELD_TYPE_STANDARD_VEHICLE_CLASSIFICATION",
+        "OPTIONAL_FIELD_TYPE_STANDARD_ENDORSEMENT_CODE",
+        "OPTIONAL_FIELD_TYPE_STANDARD_RESTRICTION_CODE",
+        "OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_VEHICLE_CLASSIFICATION_DESCRIPTION",
+        "OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_ENDORSEMENT_CODE_DESCRIPTION",
+        "OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_RESTRICTION_CODE_DESCRIPTION",
+        "OPTIONAL_FIELD_TYPE_COMPLIANCE_TYPE",
+        "OPTIONAL_FIELD_TYPE_CARD_REVISION_DATE",
+        "OPTIONAL_FIELD_TYPE_HAZMAT_ENDORSEMENT_EXPIRATION_DATE",
+        "OPTIONAL_FIELD_TYPE_LIMITED_DURATION_DOCUMENT_INDICATOR",
+        "OPTIONAL_FIELD_TYPE_WEIGHT_POUNDS",
+        "OPTIONAL_FIELD_TYPE_WEIGHT_KILOGRAMS",
+        "OPTIONAL_FIELD_TYPE_UNDER_18_UNTIL_DATE",
+        "OPTIONAL_FIELD_TYPE_UNDER_19_UNTIL_DATE",
+        "OPTIONAL_FIELD_TYPE_UNDER_21_UNTIL_DATE",
+        "OPTIONAL_FIELD_TYPE_ORGAN_DONOR_INDICATOR",
+        "OPTIONAL_FIELD_TYPE_VETERAN_INDICATOR"
+      ],
+      "default": "OPTIONAL_FIELD_TYPE_ADDRESS_STREET_2",
+      "description": "OptionalFieldType enumeration for optional fields.\n\n - OPTIONAL_FIELD_TYPE_ADDRESS_STREET_2: Represents second line of street portion.\nDAH\n - OPTIONAL_FIELD_TYPE_HAIR_COLOR: Indicates hair color of cardholder.\nDAZ\n - OPTIONAL_FIELD_TYPE_PLACE_OF_BIRTH: Denotes country and municipality/state/province where born.\nDCI\n - OPTIONAL_FIELD_TYPE_AUDIT_INFORMATION: Identifies when, where, and by whom ID was made.\nDCJ\n - OPTIONAL_FIELD_TYPE_INVENTORY_CONTROL_NUMBER: String affixed to raw materials used in production.\nDCK\n - OPTIONAL_FIELD_TYPE_ALIAS_FAMILY_NAME: Represents other family names by which known.\nDBN\n - OPTIONAL_FIELD_TYPE_ALIAS_GIVEN_NAME: Indicates other given names by which known.\nDBG\n - OPTIONAL_FIELD_TYPE_ALIAS_SUFFIX_NAME: Represents other suffixes by which known.\nDBS\n - OPTIONAL_FIELD_TYPE_NAME_SUFFIX: Indicates suffix for name (e.g., Jr, Sr).\nDCU\n - OPTIONAL_FIELD_TYPE_PHYSICAL_DESCRIPTION_WEIGHT_RANGE: Approximate weight range of cardholder.\nDCE\n - OPTIONAL_FIELD_TYPE_RACE_ETHNICITY: Codes for race or ethnicity as defined in AAMVA D20.\nDCL\n - OPTIONAL_FIELD_TYPE_STANDARD_VEHICLE_CLASSIFICATION: Standard vehicle classification codes.\nDCM\n - OPTIONAL_FIELD_TYPE_STANDARD_ENDORSEMENT_CODE: Standard endorsement codes for cardholder.\nDCN\n - OPTIONAL_FIELD_TYPE_STANDARD_RESTRICTION_CODE: Standard restriction codes for cardholder.\nDCO\n - OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_VEHICLE_CLASSIFICATION_DESCRIPTION: Text explaining jurisdiction-specific vehicle classification codes.\nDCP\n - OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_ENDORSEMENT_CODE_DESCRIPTION: Text explaining jurisdiction-specific endorsement codes.\nDCQ\n - OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_RESTRICTION_CODE_DESCRIPTION: Text describing jurisdiction-specific restriction codes.\nDCR\n - OPTIONAL_FIELD_TYPE_COMPLIANCE_TYPE: Indicates compliance status (“F”=compliant; “N”=non-compliant).\nDDA\n - OPTIONAL_FIELD_TYPE_CARD_REVISION_DATE: Date of most recent version change to DL/ID format.\nDDB\n - OPTIONAL_FIELD_TYPE_HAZMAT_ENDORSEMENT_EXPIRATION_DATE: When hazardous material endorsement expires.\nDDC\n - OPTIONAL_FIELD_TYPE_LIMITED_DURATION_DOCUMENT_INDICATOR: Indicates temporary lawful status (“1”).\nDDD\n - OPTIONAL_FIELD_TYPE_WEIGHT_POUNDS: Cardholder's weight in pounds.\nDAW\n - OPTIONAL_FIELD_TYPE_WEIGHT_KILOGRAMS: Cardholder's weight in kilograms.\nDAX\n - OPTIONAL_FIELD_TYPE_UNDER_18_UNTIL_DATE: Date when cardholder turns 18 years old.\nDDH\n - OPTIONAL_FIELD_TYPE_UNDER_19_UNTIL_DATE: Date when cardholder turns 19 years old.\nDDI\n - OPTIONAL_FIELD_TYPE_UNDER_21_UNTIL_DATE: Date when cardholder turns 21 years old.\nDDJ\n - OPTIONAL_FIELD_TYPE_ORGAN_DONOR_INDICATOR: Indicates organ donor status (“1”).\nDDK\n - OPTIONAL_FIELD_TYPE_VETERAN_INDICATOR: Indicates veteran status (“1”).\nDDL"
+    },
+    "ScanConfigImgResolution": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "format": "int64",
+          "description": "width or \"columns\" of an image."
+        },
+        "height": {
+          "type": "integer",
+          "format": "int64",
+          "description": "height or \"rows\" of an image."
+        }
+      },
+      "description": "ImgResolution - used to define the resolution of the returning image. \nIf only one dimension is set (only one of height or width) the other will be\ncomputed whilst maintaining the detections aspect ratio.\nMax target resolution is bound by input image resolution (won't upscale the detected image\nif you specified resolution greater then input image)."
+    },
+    "ScanConfigReturnDateFieldImages": {
+      "type": "object",
+      "properties": {
+        "typeFilter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1DateFieldType"
+          },
+          "description": "typeFilter - only images of specified field types are returned.\nif left empty, all field type images will be returned."
+        },
+        "jpegImageQuality": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Image is returned as encoded jpeg, this is the parameter used for jpeg compression.\nIf left undefined, we use the default value of 80."
+        }
+      }
+    },
+    "ScanConfigReturnImage": {
+      "type": "object",
+      "properties": {
+        "targetResolution": {
+          "description": "the resolution you want the returning image to have. If left empty we use predefined server value.\nif the resolution is greater then the available input image, we do not upscale the result, but\nrather use the largest possible resolution available in your input image.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ScanConfigImgResolution"
+            }
+          ]
+        },
+        "jpegImageQuality": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Image is returned as an encoded jpeg, this is the parameter used for jpeg compression. \nIf left undefined, we use the default value of 80."
+        }
+      },
+      "description": "ReturnImage - used to specify parameters for the returned image."
+    },
+    "ScanConfigReturnSexFieldImages": {
+      "type": "object",
+      "properties": {
+        "jpegImageQuality": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Image is returned as encoded jpeg, this is the parameter used for jpeg compression.\nIf left undefined, we use the default value of 80."
+        }
+      }
+    },
+    "ScanConfigReturnTextFieldImages": {
+      "type": "object",
+      "properties": {
+        "typeFilter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1TextFieldType"
+          },
+          "description": "typeFilter - only images of specified field types are returned.\nif left empty, all field type images will be returned."
+        },
+        "jpegImageQuality": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Image is returned as encoded jpeg, this is the parameter used for jpeg compression.\nIf left undefined, we use the default value of 80."
+        }
+      },
+      "description": "ReturnTextFieldImages - used to specify to the server to return images of fields\ndetected on the document (select type of interest using targetTypes field).\nUnless this is a HARD REQUIREMENT we do not recommend to use this due to its\ncomputational and data overhead."
+    },
+    "ScanConfigReturnVisualFields": {
+      "type": "object",
+      "properties": {
+        "typeFilter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1VisualFieldType"
+          },
+          "description": "typeFilter - used to specify to the server to return visual fields of specified types.\nif left empty, all visual field types will be returned."
+        },
+        "jpegImageQuality": {
+          "type": "integer",
+          "format": "int64",
+          "description": "jpegImageQuality - if left undefined, we use the default value of 80."
+        }
+      },
+      "description": "ReturnVisualFields - specify visual fields to return."
+    },
+    "SexFieldSex": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "MALE",
+        "FEMALE"
+      ],
+      "default": "UNKNOWN",
+      "description": "- UNKNOWN: Unknown\n - MALE: Male\n - FEMALE: Female",
+      "title": "Sex - enumeration of registered genders"
+    },
+    "ddxv1Location": {
+      "type": "object",
+      "properties": {
+        "detectionOnInputImage": {
+          "title": "The position of the field on the input image (before detection)",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1Polygon"
+            }
+          ]
+        },
+        "positionOnDetectedDocument": {
+          "title": "The position of the field on the dewarped document image (after detection)",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1Box"
+            }
+          ]
+        }
+      },
+      "description": "Location specifies the position of a field on the input image and the position of a field on the dewarped document.\nBoth polygon and box coordinates are relative to their respective image dimensions, and are all in range 0-1.\nE.g if an image resolution is 800x600 and x and y coordinates are 0.25 and 0.5 respectively, they translate\nto absolute coordinates of 200x300 = (800 * 0.25)x(600 * 0.5)."
+    },
+    "ddxv1Territory": {
+      "type": "string",
+      "enum": [
+        "TERRITORY_NOT_AVAILABLE",
+        "TERRITORY_AUSTRALIA_AUSTRALIAN_CAPITAL_TERRITORY",
+        "TERRITORY_AUSTRALIA_NEW_SOUTH_WALES",
+        "TERRITORY_AUSTRALIA_NORTHERN_TERRITORY",
+        "TERRITORY_AUSTRALIA_QUEENSLAND",
+        "TERRITORY_AUSTRALIA_SOUTH_AUSTRALIA",
+        "TERRITORY_AUSTRALIA_TASMANIA",
+        "TERRITORY_AUSTRALIA_VICTORIA",
+        "TERRITORY_AUSTRALIA_WESTERN_AUSTRALIA",
+        "TERRITORY_BRAZIL_ALAGOAS",
+        "TERRITORY_BRAZIL_CEARA",
+        "TERRITORY_BRAZIL_DISTRITO_FEDERAL",
+        "TERRITORY_BRAZIL_GOIAS",
+        "TERRITORY_BRAZIL_MARANHAO",
+        "TERRITORY_BRAZIL_MATO_GROSSO",
+        "TERRITORY_BRAZIL_MINAS_GERAIS",
+        "TERRITORY_BRAZIL_PARA",
+        "TERRITORY_BRAZIL_PARANA",
+        "TERRITORY_BRAZIL_PERNAMBUCO",
+        "TERRITORY_BRAZIL_RIO_DE_JANEIRO",
+        "TERRITORY_BRAZIL_RIO_GRANDE_DO_SUL",
+        "TERRITORY_BRAZIL_SANTA_CATARINA",
+        "TERRITORY_BRAZIL_SAO_PAOLO",
+        "TERRITORY_BRAZIL_SERGIPE",
+        "TERRITORY_CANADA_ALBERTA",
+        "TERRITORY_CANADA_BRITISH_COLUMBIA",
+        "TERRITORY_CANADA_MANITOBA",
+        "TERRITORY_CANADA_NEW_BRUNSWICK",
+        "TERRITORY_CANADA_NEWFOUNDLAND_AND_LABRADOR",
+        "TERRITORY_CANADA_NORTHWEST_TERRITORIES",
+        "TERRITORY_CANADA_NOVA_SCOTIA",
+        "TERRITORY_CANADA_NUNAVUT",
+        "TERRITORY_CANADA_ONTARIO",
+        "TERRITORY_CANADA_PRINCE_EDWARD_ISLAND",
+        "TERRITORY_CANADA_QUEBEC",
+        "TERRITORY_CANADA_SASKATCHEWAN",
+        "TERRITORY_CANADA_YUKON",
+        "TERRITORY_INDIA_ANDHRA_PRADESH",
+        "TERRITORY_INDIA_GUJARAT",
+        "TERRITORY_INDIA_HARYANA",
+        "TERRITORY_INDIA_KARNATAKA",
+        "TERRITORY_INDIA_KERALA",
+        "TERRITORY_INDIA_MADHYA_PRADESH",
+        "TERRITORY_INDIA_MAHARASHTRA",
+        "TERRITORY_INDIA_PUNJAB",
+        "TERRITORY_INDIA_TAMIL_NADU",
+        "TERRITORY_MEXICO_AGUASCALIENTES",
+        "TERRITORY_MEXICO_BAJA_CALIFORNIA",
+        "TERRITORY_MEXICO_BAJA_CALIFORNIA_SUR",
+        "TERRITORY_MEXICO_CAMPECHE",
+        "TERRITORY_MEXICO_CHIAPAS",
+        "TERRITORY_MEXICO_CHIHUAHUA",
+        "TERRITORY_MEXICO_CIUDAD_DE_MEXICO",
+        "TERRITORY_MEXICO_COAHUILA",
+        "TERRITORY_MEXICO_COLIMA",
+        "TERRITORY_MEXICO_DURANGO",
+        "TERRITORY_MEXICO_GUANAJUATO",
+        "TERRITORY_MEXICO_GUERRERO",
+        "TERRITORY_MEXICO_HIDALGO",
+        "TERRITORY_MEXICO_JALISCO",
+        "TERRITORY_MEXICO_MEXICO",
+        "TERRITORY_MEXICO_MICHOACAN",
+        "TERRITORY_MEXICO_MORELOS",
+        "TERRITORY_MEXICO_NAYARIT",
+        "TERRITORY_MEXICO_NUEVO_LEON",
+        "TERRITORY_MEXICO_OAXACA",
+        "TERRITORY_MEXICO_PUEBLA",
+        "TERRITORY_MEXICO_QUERETARO",
+        "TERRITORY_MEXICO_QUINTANA_ROO",
+        "TERRITORY_MEXICO_SAN_LUIS_POTOSI",
+        "TERRITORY_MEXICO_SINALOA",
+        "TERRITORY_MEXICO_SONORA",
+        "TERRITORY_MEXICO_TABASCO",
+        "TERRITORY_MEXICO_TAMAULIPAS",
+        "TERRITORY_MEXICO_TLAXCALA",
+        "TERRITORY_MEXICO_VERACRUZ",
+        "TERRITORY_MEXICO_YUCATAN",
+        "TERRITORY_MEXICO_ZACATECAS",
+        "TERRITORY_PAKISTAN_KHYBER_PAKHTUNKHWA",
+        "TERRITORY_PAKISTAN_PUNJAB",
+        "TERRITORY_USA_ALABAMA",
+        "TERRITORY_USA_ALASKA",
+        "TERRITORY_USA_ARIZONA",
+        "TERRITORY_USA_ARKANSAS",
+        "TERRITORY_USA_CALIFORNIA",
+        "TERRITORY_USA_COLORADO",
+        "TERRITORY_USA_CONNECTICUT",
+        "TERRITORY_USA_DELAWARE",
+        "TERRITORY_USA_DISTRICT_OF_COLUMBIA",
+        "TERRITORY_USA_FLORIDA",
+        "TERRITORY_USA_GEORGIA",
+        "TERRITORY_USA_HAWAII",
+        "TERRITORY_USA_IDAHO",
+        "TERRITORY_USA_ILLINOIS",
+        "TERRITORY_USA_INDIANA",
+        "TERRITORY_USA_IOWA",
+        "TERRITORY_USA_KANSAS",
+        "TERRITORY_USA_KENTUCKY",
+        "TERRITORY_USA_LOUISIANA",
+        "TERRITORY_USA_MAINE",
+        "TERRITORY_USA_MARYLAND",
+        "TERRITORY_USA_MASSACHUSETTS",
+        "TERRITORY_USA_MICHIGAN",
+        "TERRITORY_USA_MINNESOTA",
+        "TERRITORY_USA_MISSISSIPPI",
+        "TERRITORY_USA_MISSOURI",
+        "TERRITORY_USA_MONTANA",
+        "TERRITORY_USA_NEBRASKA",
+        "TERRITORY_USA_NEVADA",
+        "TERRITORY_USA_NEW_HAMPSHIRE",
+        "TERRITORY_USA_NEW_JERSEY",
+        "TERRITORY_USA_NEW_MEXICO",
+        "TERRITORY_USA_NEW_YORK",
+        "TERRITORY_USA_NEW_YORK_CITY",
+        "TERRITORY_USA_NORTH_CAROLINA",
+        "TERRITORY_USA_NORTH_DAKOTA",
+        "TERRITORY_USA_OHIO",
+        "TERRITORY_USA_OKLAHOMA",
+        "TERRITORY_USA_OREGON",
+        "TERRITORY_USA_PENNSYLVANIA",
+        "TERRITORY_USA_RHODE_ISLAND",
+        "TERRITORY_USA_SOUTH_CAROLINA",
+        "TERRITORY_USA_SOUTH_DAKOTA",
+        "TERRITORY_USA_TENNESSEE",
+        "TERRITORY_USA_TEXAS",
+        "TERRITORY_USA_UTAH",
+        "TERRITORY_USA_VERMONT",
+        "TERRITORY_USA_VIRGINIA",
+        "TERRITORY_USA_WASHINGTON",
+        "TERRITORY_USA_WEST_VIRGINIA",
+        "TERRITORY_USA_WISCONSIN",
+        "TERRITORY_USA_WYOMING"
+      ],
+      "default": "TERRITORY_NOT_AVAILABLE",
+      "description": "Territory - enumeration of supported regions.\n\n - TERRITORY_NOT_AVAILABLE: Undefined\n - TERRITORY_AUSTRALIA_AUSTRALIAN_CAPITAL_TERRITORY: Australian Capital Territory in Australia\n - TERRITORY_AUSTRALIA_NEW_SOUTH_WALES: New South Wales in Australia\n - TERRITORY_AUSTRALIA_NORTHERN_TERRITORY: Northern Territory in Australia\n - TERRITORY_AUSTRALIA_QUEENSLAND: Queensland in Australia\n - TERRITORY_AUSTRALIA_SOUTH_AUSTRALIA: South Australia in Australia\n - TERRITORY_AUSTRALIA_TASMANIA: Tasmania in Australia\n - TERRITORY_AUSTRALIA_VICTORIA: Victoria in Australia\n - TERRITORY_AUSTRALIA_WESTERN_AUSTRALIA: Western Australia in Australia\n - TERRITORY_BRAZIL_ALAGOAS: Alagoas in Brazil\n - TERRITORY_BRAZIL_CEARA: Ceara in Brazil\n - TERRITORY_BRAZIL_DISTRITO_FEDERAL: Distrito Federal in Brazil\n - TERRITORY_BRAZIL_GOIAS: Goias in Brazil\n - TERRITORY_BRAZIL_MARANHAO: Maranhao in Brazil\n - TERRITORY_BRAZIL_MATO_GROSSO: Mato Grosso in Brazil\n - TERRITORY_BRAZIL_MINAS_GERAIS: Minas Gerais in Brazil\n - TERRITORY_BRAZIL_PARA: Para in Brazil\n - TERRITORY_BRAZIL_PARANA: Parana in Brazil\n - TERRITORY_BRAZIL_PERNAMBUCO: Pernambuco in Brazil\n - TERRITORY_BRAZIL_RIO_DE_JANEIRO: Rio De Janeiro in Brazil\n - TERRITORY_BRAZIL_RIO_GRANDE_DO_SUL: Rio Grande Do Sul in Brazil\n - TERRITORY_BRAZIL_SANTA_CATARINA: Santa Catarina in Brazil\n - TERRITORY_BRAZIL_SAO_PAOLO: Sao Paolo in Brazil\n - TERRITORY_BRAZIL_SERGIPE: Sergipe in Brazil\n - TERRITORY_CANADA_ALBERTA: Alberta in Canada\n - TERRITORY_CANADA_BRITISH_COLUMBIA: British Columbia in Canada\n - TERRITORY_CANADA_MANITOBA: Manitoba in Canada\n - TERRITORY_CANADA_NEW_BRUNSWICK: New Brunswick in Canada\n - TERRITORY_CANADA_NEWFOUNDLAND_AND_LABRADOR: Newfoundland And Labrador in Canada\n - TERRITORY_CANADA_NORTHWEST_TERRITORIES: Northwest Territories in Canada\n - TERRITORY_CANADA_NOVA_SCOTIA: Nova Scotia in Canada\n - TERRITORY_CANADA_NUNAVUT: Nunavut in Canada\n - TERRITORY_CANADA_ONTARIO: Ontario in Canada\n - TERRITORY_CANADA_PRINCE_EDWARD_ISLAND: Prince Edward Island in Canada\n - TERRITORY_CANADA_QUEBEC: Quebec in Canada\n - TERRITORY_CANADA_SASKATCHEWAN: Saskatchewan in Canada\n - TERRITORY_CANADA_YUKON: Yukon in Canada\n - TERRITORY_INDIA_ANDHRA_PRADESH: Andhra Pradesh in India\n - TERRITORY_INDIA_GUJARAT: Gujarat in India\n - TERRITORY_INDIA_HARYANA: Haryana in India\n - TERRITORY_INDIA_KARNATAKA: Karnataka in India\n - TERRITORY_INDIA_KERALA: Kerala in India\n - TERRITORY_INDIA_MADHYA_PRADESH: Madhya Pradesh in India\n - TERRITORY_INDIA_MAHARASHTRA: Maharashtra in India\n - TERRITORY_INDIA_PUNJAB: Punjab in India\n - TERRITORY_INDIA_TAMIL_NADU: Tamil Nadu in India\n - TERRITORY_MEXICO_AGUASCALIENTES: Aguascalientes in Mexico\n - TERRITORY_MEXICO_BAJA_CALIFORNIA: Baja California in Mexico\n - TERRITORY_MEXICO_BAJA_CALIFORNIA_SUR: Baja California Sur in Mexico\n - TERRITORY_MEXICO_CAMPECHE: Campeche in Mexico\n - TERRITORY_MEXICO_CHIAPAS: Chiapas in Mexico\n - TERRITORY_MEXICO_CHIHUAHUA: Chihuahua in Mexico\n - TERRITORY_MEXICO_CIUDAD_DE_MEXICO: Ciudad De Mexico in Mexico\n - TERRITORY_MEXICO_COAHUILA: Coahuila in Mexico\n - TERRITORY_MEXICO_COLIMA: Colima in Mexico\n - TERRITORY_MEXICO_DURANGO: Durango in Mexico\n - TERRITORY_MEXICO_GUANAJUATO: Guanajuato in Mexico\n - TERRITORY_MEXICO_GUERRERO: Guerrero in Mexico\n - TERRITORY_MEXICO_HIDALGO: Hidalgo in Mexico\n - TERRITORY_MEXICO_JALISCO: Jalisco in Mexico\n - TERRITORY_MEXICO_MEXICO: Mexico in Mexico\n - TERRITORY_MEXICO_MICHOACAN: Michoacan in Mexico\n - TERRITORY_MEXICO_MORELOS: Morelos in Mexico\n - TERRITORY_MEXICO_NAYARIT: Nayarit in Mexico\n - TERRITORY_MEXICO_NUEVO_LEON: Nuevo Leon in Mexico\n - TERRITORY_MEXICO_OAXACA: Oaxaca in Mexico\n - TERRITORY_MEXICO_PUEBLA: Puebla in Mexico\n - TERRITORY_MEXICO_QUERETARO: Queretaro in Mexico\n - TERRITORY_MEXICO_QUINTANA_ROO: Quintana Roo in Mexico\n - TERRITORY_MEXICO_SAN_LUIS_POTOSI: San Luis Potosi in Mexico\n - TERRITORY_MEXICO_SINALOA: Sinaloa in Mexico\n - TERRITORY_MEXICO_SONORA: Sonora in Mexico\n - TERRITORY_MEXICO_TABASCO: Tabasco in Mexico\n - TERRITORY_MEXICO_TAMAULIPAS: Tamaulipas in Mexico\n - TERRITORY_MEXICO_TLAXCALA: Tlaxcala in Mexico\n - TERRITORY_MEXICO_VERACRUZ: Veracruz in Mexico\n - TERRITORY_MEXICO_YUCATAN: Yucatan in Mexico\n - TERRITORY_MEXICO_ZACATECAS: Zacatecas in Mexico\n - TERRITORY_PAKISTAN_KHYBER_PAKHTUNKHWA: Khyber Pakhtunkhwa in Pakistan\n - TERRITORY_PAKISTAN_PUNJAB: Punjab in Pakistan\n - TERRITORY_USA_ALABAMA: Alabama in USA\n - TERRITORY_USA_ALASKA: Alaska in USA\n - TERRITORY_USA_ARIZONA: Arizona in USA\n - TERRITORY_USA_ARKANSAS: Arkansas in USA\n - TERRITORY_USA_CALIFORNIA: California in USA\n - TERRITORY_USA_COLORADO: Colorado in USA\n - TERRITORY_USA_CONNECTICUT: Connecticut in USA\n - TERRITORY_USA_DELAWARE: Delaware in USA\n - TERRITORY_USA_DISTRICT_OF_COLUMBIA: District Of Columbia in USA\n - TERRITORY_USA_FLORIDA: Florida in USA\n - TERRITORY_USA_GEORGIA: Georgia in USA\n - TERRITORY_USA_HAWAII: Hawaii in USA\n - TERRITORY_USA_IDAHO: Idaho in USA\n - TERRITORY_USA_ILLINOIS: Illinois in USA\n - TERRITORY_USA_INDIANA: Indiana in USA\n - TERRITORY_USA_IOWA: Iowa in USA\n - TERRITORY_USA_KANSAS: Kansas in USA\n - TERRITORY_USA_KENTUCKY: Kentucky in USA\n - TERRITORY_USA_LOUISIANA: Louisiana in USA\n - TERRITORY_USA_MAINE: Maine in USA\n - TERRITORY_USA_MARYLAND: Maryland in USA\n - TERRITORY_USA_MASSACHUSETTS: Massachusetts in USA\n - TERRITORY_USA_MICHIGAN: Michigan in USA\n - TERRITORY_USA_MINNESOTA: Minnesota in USA\n - TERRITORY_USA_MISSISSIPPI: Mississippi in USA\n - TERRITORY_USA_MISSOURI: Missouri in USA\n - TERRITORY_USA_MONTANA: Montana in USA\n - TERRITORY_USA_NEBRASKA: Nebraska in USA\n - TERRITORY_USA_NEVADA: Nevada in USA\n - TERRITORY_USA_NEW_HAMPSHIRE: New Hampshire in USA\n - TERRITORY_USA_NEW_JERSEY: New Jersey in USA\n - TERRITORY_USA_NEW_MEXICO: New Mexico in USA\n - TERRITORY_USA_NEW_YORK: New York in USA\n - TERRITORY_USA_NEW_YORK_CITY: New York City in USA\n - TERRITORY_USA_NORTH_CAROLINA: North Carolina in USA\n - TERRITORY_USA_NORTH_DAKOTA: North Dakota in USA\n - TERRITORY_USA_OHIO: Ohio in USA\n - TERRITORY_USA_OKLAHOMA: Oklahoma in USA\n - TERRITORY_USA_OREGON: Oregon in USA\n - TERRITORY_USA_PENNSYLVANIA: Pennsylvania in USA\n - TERRITORY_USA_RHODE_ISLAND: Rhode Island in USA\n - TERRITORY_USA_SOUTH_CAROLINA: South Carolina in USA\n - TERRITORY_USA_SOUTH_DAKOTA: South Dakota in USA\n - TERRITORY_USA_TENNESSEE: Tennessee in USA\n - TERRITORY_USA_TEXAS: Texas in USA\n - TERRITORY_USA_UTAH: Utah in USA\n - TERRITORY_USA_VERMONT: Vermont in USA\n - TERRITORY_USA_VIRGINIA: Virginia in USA\n - TERRITORY_USA_WASHINGTON: Washington in USA\n - TERRITORY_USA_WEST_VIRGINIA: West Virginia in USA\n - TERRITORY_USA_WISCONSIN: Wisconsin in USA\n - TERRITORY_USA_WYOMING: Wyoming in USA"
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "protoddxv1Country": {
+      "type": "string",
+      "enum": [
+        "COUNTRY_NOT_AVAILABLE",
+        "COUNTRY_AFGHANISTAN",
+        "COUNTRY_ALBANIA",
+        "COUNTRY_ALGERIA",
+        "COUNTRY_ANTIGUA_AND_BARBUDA",
+        "COUNTRY_ARGENTINA",
+        "COUNTRY_ARMENIA",
+        "COUNTRY_AUSTRALIA",
+        "COUNTRY_AUSTRIA",
+        "COUNTRY_AZERBAIJAN",
+        "COUNTRY_BAHAMAS",
+        "COUNTRY_BAHRAIN",
+        "COUNTRY_BANGLADESH",
+        "COUNTRY_BARBADOS",
+        "COUNTRY_BELARUS",
+        "COUNTRY_BELGIUM",
+        "COUNTRY_BERMUDA",
+        "COUNTRY_BOLIVIA",
+        "COUNTRY_BOSNIA_AND_HERZEGOVINA",
+        "COUNTRY_BRAZIL",
+        "COUNTRY_BRUNEI",
+        "COUNTRY_BULGARIA",
+        "COUNTRY_CAMBODIA",
+        "COUNTRY_CAMEROON",
+        "COUNTRY_CANADA",
+        "COUNTRY_CAYMAN_ISLANDS",
+        "COUNTRY_CHILE",
+        "COUNTRY_CHINA",
+        "COUNTRY_COLOMBIA",
+        "COUNTRY_COSTA_RICA",
+        "COUNTRY_CROATIA",
+        "COUNTRY_CUBA",
+        "COUNTRY_CYPRUS",
+        "COUNTRY_CZECHIA",
+        "COUNTRY_DEMOCRATIC_REPUBLIC_OF_THE_CONGO",
+        "COUNTRY_DENMARK",
+        "COUNTRY_DOMINICAN_REPUBLIC",
+        "COUNTRY_ECUADOR",
+        "COUNTRY_EGYPT",
+        "COUNTRY_EL_SALVADOR",
+        "COUNTRY_ESTONIA",
+        "COUNTRY_FINLAND",
+        "COUNTRY_FRANCE",
+        "COUNTRY_GEORGIA",
+        "COUNTRY_GERMANY",
+        "COUNTRY_GHANA",
+        "COUNTRY_GREECE",
+        "COUNTRY_GUATEMALA",
+        "COUNTRY_HAITI",
+        "COUNTRY_HONDURAS",
+        "COUNTRY_HONG_KONG",
+        "COUNTRY_HUNGARY",
+        "COUNTRY_ICELAND",
+        "COUNTRY_INDIA",
+        "COUNTRY_INDONESIA",
+        "COUNTRY_IRAN",
+        "COUNTRY_IRAQ",
+        "COUNTRY_IRELAND",
+        "COUNTRY_ISRAEL",
+        "COUNTRY_ITALY",
+        "COUNTRY_IVORY_COAST",
+        "COUNTRY_JAMAICA",
+        "COUNTRY_JAPAN",
+        "COUNTRY_JORDAN",
+        "COUNTRY_KAZAKHSTAN",
+        "COUNTRY_KENYA",
+        "COUNTRY_KOSOVO",
+        "COUNTRY_KUWAIT",
+        "COUNTRY_LATVIA",
+        "COUNTRY_LIBYA",
+        "COUNTRY_LIECHTENSTEIN",
+        "COUNTRY_LITHUANIA",
+        "COUNTRY_LUXEMBOURG",
+        "COUNTRY_MALAYSIA",
+        "COUNTRY_MALDIVES",
+        "COUNTRY_MALTA",
+        "COUNTRY_MAURITIUS",
+        "COUNTRY_MEXICO",
+        "COUNTRY_MOLDOVA",
+        "COUNTRY_MONACO",
+        "COUNTRY_MONTENEGRO",
+        "COUNTRY_MOROCCO",
+        "COUNTRY_NAMIBIA",
+        "COUNTRY_NEPAL",
+        "COUNTRY_NETHERLANDS",
+        "COUNTRY_NEW_ZEALAND",
+        "COUNTRY_NICARAGUA",
+        "COUNTRY_NIGERIA",
+        "COUNTRY_NORTH_MACEDONIA",
+        "COUNTRY_NORWAY",
+        "COUNTRY_OMAN",
+        "COUNTRY_PAKISTAN",
+        "COUNTRY_PALESTINE",
+        "COUNTRY_PANAMA",
+        "COUNTRY_PARAGUAY",
+        "COUNTRY_PERU",
+        "COUNTRY_PHILIPPINES",
+        "COUNTRY_POLAND",
+        "COUNTRY_PORTUGAL",
+        "COUNTRY_PUERTO_RICO",
+        "COUNTRY_QATAR",
+        "COUNTRY_ROMANIA",
+        "COUNTRY_RUSSIA",
+        "COUNTRY_SAINT_KITTS_AND_NEVIS",
+        "COUNTRY_SAINT_LUCIA",
+        "COUNTRY_SAUDI_ARABIA",
+        "COUNTRY_SERBIA",
+        "COUNTRY_SINGAPORE",
+        "COUNTRY_SLOVAKIA",
+        "COUNTRY_SLOVENIA",
+        "COUNTRY_SOUTH_AFRICA",
+        "COUNTRY_SOUTH_KOREA",
+        "COUNTRY_SPAIN",
+        "COUNTRY_SRI_LANKA",
+        "COUNTRY_SUDAN",
+        "COUNTRY_SWEDEN",
+        "COUNTRY_SWITZERLAND",
+        "COUNTRY_TAIWAN",
+        "COUNTRY_TANZANIA",
+        "COUNTRY_THAILAND",
+        "COUNTRY_TRINIDAD_AND_TOBAGO",
+        "COUNTRY_TUNISIA",
+        "COUNTRY_TURKEY",
+        "COUNTRY_UAE",
+        "COUNTRY_UK",
+        "COUNTRY_UKRAINE",
+        "COUNTRY_URUGUAY",
+        "COUNTRY_USA",
+        "COUNTRY_UZBEKISTAN",
+        "COUNTRY_VENEZUELA",
+        "COUNTRY_VIETNAM"
+      ],
+      "default": "COUNTRY_NOT_AVAILABLE",
+      "description": "Country - enumeration of supported countries.\n\n - COUNTRY_NOT_AVAILABLE: Not available\n - COUNTRY_AFGHANISTAN: AFGHANISTAN\n - COUNTRY_ALBANIA: ALBANIA\n - COUNTRY_ALGERIA: ALGERIA\n - COUNTRY_ANTIGUA_AND_BARBUDA: ANTIGUA AND BARBUDA\n - COUNTRY_ARGENTINA: ARGENTINA\n - COUNTRY_ARMENIA: ARMENIA\n - COUNTRY_AUSTRALIA: AUSTRALIA\n - COUNTRY_AUSTRIA: AUSTRIA\n - COUNTRY_AZERBAIJAN: AZERBAIJAN\n - COUNTRY_BAHAMAS: BAHAMAS\n - COUNTRY_BAHRAIN: BAHRAIN\n - COUNTRY_BANGLADESH: BANGLADESH\n - COUNTRY_BARBADOS: BARBADOS\n - COUNTRY_BELARUS: BELARUS\n - COUNTRY_BELGIUM: BELGIUM\n - COUNTRY_BERMUDA: BERMUDA\n - COUNTRY_BOLIVIA: BOLIVIA\n - COUNTRY_BOSNIA_AND_HERZEGOVINA: BOSNIA AND HERZEGOVINA\n - COUNTRY_BRAZIL: BRAZIL\n - COUNTRY_BRUNEI: BRUNEI\n - COUNTRY_BULGARIA: BULGARIA\n - COUNTRY_CAMBODIA: CAMBODIA\n - COUNTRY_CAMEROON: CAMEROON\n - COUNTRY_CANADA: CANADA\n - COUNTRY_CAYMAN_ISLANDS: CAYMAN ISLANDS\n - COUNTRY_CHILE: CHILE\n - COUNTRY_CHINA: CHINA\n - COUNTRY_COLOMBIA: COLOMBIA\n - COUNTRY_COSTA_RICA: COSTA RICA\n - COUNTRY_CROATIA: CROATIA\n - COUNTRY_CUBA: CUBA\n - COUNTRY_CYPRUS: CYPRUS\n - COUNTRY_CZECHIA: CZECHIA\n - COUNTRY_DEMOCRATIC_REPUBLIC_OF_THE_CONGO: DEMOCRATIC REPUBLIC OF THE CONGO\n - COUNTRY_DENMARK: DENMARK\n - COUNTRY_DOMINICAN_REPUBLIC: DOMINICAN REPUBLIC\n - COUNTRY_ECUADOR: ECUADOR\n - COUNTRY_EGYPT: EGYPT\n - COUNTRY_EL_SALVADOR: EL SALVADOR\n - COUNTRY_ESTONIA: ESTONIA\n - COUNTRY_FINLAND: FINLAND\n - COUNTRY_FRANCE: FRANCE\n - COUNTRY_GEORGIA: GEORGIA\n - COUNTRY_GERMANY: GERMANY\n - COUNTRY_GHANA: GHANA\n - COUNTRY_GREECE: GREECE\n - COUNTRY_GUATEMALA: GUATEMALA\n - COUNTRY_HAITI: HAITI\n - COUNTRY_HONDURAS: HONDURAS\n - COUNTRY_HONG_KONG: HONG KONG\n - COUNTRY_HUNGARY: HUNGARY\n - COUNTRY_ICELAND: ICELAND\n - COUNTRY_INDIA: INDIA\n - COUNTRY_INDONESIA: INDONESIA\n - COUNTRY_IRAN: IRAN\n - COUNTRY_IRAQ: IRAQ\n - COUNTRY_IRELAND: IRELAND\n - COUNTRY_ISRAEL: ISRAEL\n - COUNTRY_ITALY: ITALY\n - COUNTRY_IVORY_COAST: IVORY COAST\n - COUNTRY_JAMAICA: JAMAICA\n - COUNTRY_JAPAN: JAPAN\n - COUNTRY_JORDAN: JORDAN\n - COUNTRY_KAZAKHSTAN: KAZAKHSTAN\n - COUNTRY_KENYA: KENYA\n - COUNTRY_KOSOVO: KOSOVO\n - COUNTRY_KUWAIT: KUWAIT\n - COUNTRY_LATVIA: LATVIA\n - COUNTRY_LIBYA: LIBYA\n - COUNTRY_LIECHTENSTEIN: LIECHTENSTEIN\n - COUNTRY_LITHUANIA: LITHUANIA\n - COUNTRY_LUXEMBOURG: LUXEMBOURG\n - COUNTRY_MALAYSIA: MALAYSIA\n - COUNTRY_MALDIVES: MALDIVES\n - COUNTRY_MALTA: MALTA\n - COUNTRY_MAURITIUS: MAURITIUS\n - COUNTRY_MEXICO: MEXICO\n - COUNTRY_MOLDOVA: MOLDOVA\n - COUNTRY_MONACO: MONACO\n - COUNTRY_MONTENEGRO: MONTENEGRO\n - COUNTRY_MOROCCO: MOROCCO\n - COUNTRY_NAMIBIA: NAMIBIA\n - COUNTRY_NEPAL: NEPAL\n - COUNTRY_NETHERLANDS: NETHERLANDS\n - COUNTRY_NEW_ZEALAND: NEW ZEALAND\n - COUNTRY_NICARAGUA: NICARAGUA\n - COUNTRY_NIGERIA: NIGERIA\n - COUNTRY_NORTH_MACEDONIA: NORTH MACEDONIA\n - COUNTRY_NORWAY: NORWAY\n - COUNTRY_OMAN: OMAN\n - COUNTRY_PAKISTAN: PAKISTAN\n - COUNTRY_PALESTINE: PALESTINE\n - COUNTRY_PANAMA: PANAMA\n - COUNTRY_PARAGUAY: PARAGUAY\n - COUNTRY_PERU: PERU\n - COUNTRY_PHILIPPINES: PHILIPPINES\n - COUNTRY_POLAND: POLAND\n - COUNTRY_PORTUGAL: PORTUGAL\n - COUNTRY_PUERTO_RICO: PUERTO RICO\n - COUNTRY_QATAR: QATAR\n - COUNTRY_ROMANIA: ROMANIA\n - COUNTRY_RUSSIA: RUSSIA\n - COUNTRY_SAINT_KITTS_AND_NEVIS: SAINT KITTS AND NEVIS\n - COUNTRY_SAINT_LUCIA: SAINT LUCIA\n - COUNTRY_SAUDI_ARABIA: SAUDI ARABIA\n - COUNTRY_SERBIA: SERBIA\n - COUNTRY_SINGAPORE: SINGAPORE\n - COUNTRY_SLOVAKIA: SLOVAKIA\n - COUNTRY_SLOVENIA: SLOVENIA\n - COUNTRY_SOUTH_AFRICA: SOUTH AFRICA\n - COUNTRY_SOUTH_KOREA: SOUTH KOREA\n - COUNTRY_SPAIN: SPAIN\n - COUNTRY_SRI_LANKA: SRI LANKA\n - COUNTRY_SUDAN: SUDAN\n - COUNTRY_SWEDEN: SWEDEN\n - COUNTRY_SWITZERLAND: SWITZERLAND\n - COUNTRY_TAIWAN: TAIWAN\n - COUNTRY_TANZANIA: TANZANIA\n - COUNTRY_THAILAND: THAILAND\n - COUNTRY_TRINIDAD_AND_TOBAGO: TRINIDAD AND TOBAGO\n - COUNTRY_TUNISIA: TUNISIA\n - COUNTRY_TURKEY: TURKEY\n - COUNTRY_UAE: UAE\n - COUNTRY_UK: UK\n - COUNTRY_UKRAINE: UKRAINE\n - COUNTRY_URUGUAY: URUGUAY\n - COUNTRY_USA: USA\n - COUNTRY_UZBEKISTAN: UZBEKISTAN\n - COUNTRY_VENEZUELA: VENEZUELA\n - COUNTRY_VIETNAM: VIETNAM"
+    },
+    "v1Alphabet": {
+      "type": "string",
+      "enum": [
+        "ALPHABET_LATIN",
+        "ALPHABET_CYRILLIC",
+        "ALPHABET_ARABIC"
+      ],
+      "default": "ALPHABET_LATIN",
+      "description": "- ALPHABET_LATIN: Latin alphabet\n - ALPHABET_CYRILLIC: Cyrillic alphabet\n - ALPHABET_ARABIC: Arabic alphabet",
+      "title": "Alphabet - enum specifying the alphabet in a field"
+    },
+    "v1Box": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "float"
+        },
+        "y": {
+          "type": "number",
+          "format": "float"
+        },
+        "width": {
+          "type": "number",
+          "format": "float"
+        },
+        "height": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "v1DateField": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "title": "type - date field type",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1DateFieldType"
+            }
+          ]
+        },
+        "date": {
+          "title": "date - parsed date, if parsing fails it will empty",
+          "allOf": [
+            {
+              "$ref": "#/definitions/DateFieldDate"
+            }
+          ]
+        },
+        "value": {
+          "type": "string",
+          "title": "OCR text value of the field"
+        },
+        "alphabet": {
+          "$ref": "#/definitions/v1Alphabet"
+        },
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "title": "optional, empty by default, returned if specified in the ScanDocumentRequest"
+        },
+        "location": {
+          "title": "EMPTY BY DEFAULT, the location of the field on the input image. Available depending\non user license plan",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ddxv1Location"
+            }
+          ]
+        }
+      }
+    },
+    "v1DateFieldType": {
+      "type": "string",
+      "enum": [
+        "TYPE_DATE_OF_BIRTH",
+        "TYPE_ISSUE_DATE",
+        "TYPE_EXPIRY_DATE",
+        "TYPE_CLASS_EFFECTIVE_DATE",
+        "TYPE_CLASS_EXPIRY_DATE"
+      ],
+      "default": "TYPE_DATE_OF_BIRTH",
+      "description": "- TYPE_DATE_OF_BIRTH: Date of birth\n - TYPE_ISSUE_DATE: Document issue date\n - TYPE_EXPIRY_DATE: Document expiry date\n - TYPE_CLASS_EFFECTIVE_DATE: Class effective date. Only for some of Australian document types that define \"classes\"\n - TYPE_CLASS_EXPIRY_DATE: Class expiry date. Only for some of Australian document types that define \"classes\"",
+      "title": "Type - an enum specifying date field types"
+    },
+    "v1DocumentClass": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "title": "Document type",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1DocumentType"
+            }
+          ]
+        },
+        "country": {
+          "title": "Country",
+          "allOf": [
+            {
+              "$ref": "#/definitions/protoddxv1Country"
+            }
+          ]
+        },
+        "territory": {
+          "title": "Territory",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ddxv1Territory"
+            }
+          ]
+        }
+      },
+      "title": "DocumentClass"
+    },
+    "v1DocumentData": {
+      "type": "object",
+      "properties": {
+        "textField": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1TextField"
+          },
+          "title": "field holds detected document textual fields.\nTextual fields are all the fields that have textual representation and we expect\nout users to use the OCRed and transcribed text.\nWill be empty if status is not OK"
+        },
+        "visualField": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1VisualField"
+          },
+          "description": "visualField holds detected document visual fields.\nVisual fields are those whose values can't be extracted as text, and are\nexpected to be extracted as an image or position in the given image."
+        },
+        "dateField": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1DateField"
+          },
+          "description": "dateField holds detected document date fields.\nCompared to textual fields, they don't just hold textual information present on the document\nbut offer \"date\" in a structured parsed format (year, month, day) regardless of textual\nrepresentation."
+        },
+        "sexField": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1SexField"
+          },
+          "description": "sexField holds detected document gender fields\nCompared to textual fields, they don't just hold textual information present on the document\nbut offer gender information as a parsed enumeration."
+        },
+        "mrz": {
+          "title": "mrz holds the mrz data extracted from the image if one was found, empty otherwise",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1Mrz"
+            }
+          ]
+        },
+        "pdf417Barcode": {
+          "title": "pdf417Barcode - holds data extracted from PDF417 barcode detected on the document if one was found, empty otherwise",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1Pdf417Barcode"
+            }
+          ]
+        }
+      }
+    },
+    "v1DocumentType": {
+      "type": "string",
+      "enum": [
+        "DOCUMENT_TYPE_NOT_AVAILABLE",
+        "DOCUMENT_TYPE_ADDRESS_CARD",
+        "DOCUMENT_TYPE_ALIEN_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_ASYLUM_SEEKER_CARD",
+        "DOCUMENT_TYPE_BORDER_CROSSING_CARD",
+        "DOCUMENT_TYPE_CITIZENSHIP_CERTIFICATE",
+        "DOCUMENT_TYPE_CONSULAR_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_CONSULAR_PASSPORT",
+        "DOCUMENT_TYPE_CONSULAR_VOTER_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_DRIVERS_LICENSE",
+        "DOCUMENT_TYPE_DRIVERS_LICENSE_AND_SERVICES_CARD",
+        "DOCUMENT_TYPE_DRIVER_CARD",
+        "DOCUMENT_TYPE_DRIVER_PRIVILEGE_CARD",
+        "DOCUMENT_TYPE_DRIVER_QUALIFICATION_CARD",
+        "DOCUMENT_TYPE_EMPLOYMENT_PASS",
+        "DOCUMENT_TYPE_EXIT_ENTRY_PERMIT",
+        "DOCUMENT_TYPE_E_ID",
+        "DOCUMENT_TYPE_FIN_CARD",
+        "DOCUMENT_TYPE_GLOBAL_ENTRY_CARD",
+        "DOCUMENT_TYPE_GREEN_CARD",
+        "DOCUMENT_TYPE_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_IMMIGRANT_VISA",
+        "DOCUMENT_TYPE_INDIVIDUAL_NUMBER_CARD",
+        "DOCUMENT_TYPE_INTERNAL_PASSPORT",
+        "DOCUMENT_TYPE_MAINLAND_TRAVEL_PERMIT_TAIWAN",
+        "DOCUMENT_TYPE_MILITARY_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_MINORS_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_MINORS_PASSPORT",
+        "DOCUMENT_TYPE_MINORS_SERVICES_CARD",
+        "DOCUMENT_TYPE_MULTI_PURPOSE_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_MY_KAD",
+        "DOCUMENT_TYPE_MY_KAS",
+        "DOCUMENT_TYPE_MY_KID",
+        "DOCUMENT_TYPE_MY_POLIS",
+        "DOCUMENT_TYPE_MY_PR",
+        "DOCUMENT_TYPE_MY_TENTERA",
+        "DOCUMENT_TYPE_NBI_CLEARANCE_DOCUMENT",
+        "DOCUMENT_TYPE_NEXT_GEN_ALIEN_PASSPORT",
+        "DOCUMENT_TYPE_NEXT_GEN_PASSPORT",
+        "DOCUMENT_TYPE_NEXT_GEN_REFUGEE_PASSPORT",
+        "DOCUMENT_TYPE_NEXUS_CARD",
+        "DOCUMENT_TYPE_PASS",
+        "DOCUMENT_TYPE_PASSPORT",
+        "DOCUMENT_TYPE_PASSPORT_CARD",
+        "DOCUMENT_TYPE_PERMANENT_ACCOUNT_NUMBER_CARD",
+        "DOCUMENT_TYPE_POSTAL_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_PROFESSIONAL_CARD",
+        "DOCUMENT_TYPE_PROFESSIONAL_DRIVERS_LICENSE",
+        "DOCUMENT_TYPE_PROOF_OF_AGE_CARD",
+        "DOCUMENT_TYPE_PROOF_OF_REGISTRATION",
+        "DOCUMENT_TYPE_PROVISIONAL_DRIVERS_LICENSE",
+        "DOCUMENT_TYPE_REFUGEE_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_RESIDENCE_PERMIT",
+        "DOCUMENT_TYPE_RESIDENT_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_SERVICES_CARD",
+        "DOCUMENT_TYPE_SIS_ID",
+        "DOCUMENT_TYPE_SOCIAL_SECURITY_CARD",
+        "DOCUMENT_TYPE_SPECIAL_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_S_PASS",
+        "DOCUMENT_TYPE_TAX_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_TEMPORARY_PROTECTION_PERMIT",
+        "DOCUMENT_TYPE_TEMPORARY_RESIDENCE_PERMIT",
+        "DOCUMENT_TYPE_TRIBAL_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_TWIC_CARD",
+        "DOCUMENT_TYPE_UNIFORMED_SERVICES_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_VETERAN_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_VISA",
+        "DOCUMENT_TYPE_VOTER_IDENTIFICATION_DOCUMENT",
+        "DOCUMENT_TYPE_WEAPON_PERMIT",
+        "DOCUMENT_TYPE_WORK_PERMIT",
+        "DOCUMENT_TYPE_IKAD"
+      ],
+      "default": "DOCUMENT_TYPE_NOT_AVAILABLE",
+      "description": "DocumentType - an enum of supported document types.\nThere are many countries and many document types. To see the full list of\nsupported document types in each country and/or region for our latest release please see\nthe [documentation](https://github.com/idnorm/id-extraction/blob/master/docs/document_types_by_country_and_region.md).\n\n - DOCUMENT_TYPE_NOT_AVAILABLE: Not available\n - DOCUMENT_TYPE_ADDRESS_CARD: ADDRESS_CARD\n - DOCUMENT_TYPE_ALIEN_IDENTIFICATION_DOCUMENT: ALIEN_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_ASYLUM_SEEKER_CARD: ASYLUM_SEEKER_CARD\n - DOCUMENT_TYPE_BORDER_CROSSING_CARD: BORDER_CROSSING_CARD\n - DOCUMENT_TYPE_CITIZENSHIP_CERTIFICATE: CITIZENSHIP_CERTIFICATE\n - DOCUMENT_TYPE_CONSULAR_IDENTIFICATION_DOCUMENT: CONSULAR_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_CONSULAR_PASSPORT: CONSULAR_PASSPORT\n - DOCUMENT_TYPE_CONSULAR_VOTER_IDENTIFICATION_DOCUMENT: CONSULAR_VOTER_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_DRIVERS_LICENSE: DRIVERS_LICENSE\n - DOCUMENT_TYPE_DRIVERS_LICENSE_AND_SERVICES_CARD: DRIVERS_LICENSE_AND_SERVICES_CARD\n - DOCUMENT_TYPE_DRIVER_CARD: DRIVER_CARD\n - DOCUMENT_TYPE_DRIVER_PRIVILEGE_CARD: DRIVER_PRIVILEGE_CARD\n - DOCUMENT_TYPE_DRIVER_QUALIFICATION_CARD: DRIVER_QUALIFICATION_CARD\n - DOCUMENT_TYPE_EMPLOYMENT_PASS: EMPLOYMENT_PASS\n - DOCUMENT_TYPE_EXIT_ENTRY_PERMIT: EXIT_ENTRY_PERMIT\n - DOCUMENT_TYPE_E_ID: E_ID\n - DOCUMENT_TYPE_FIN_CARD: FIN_CARD\n - DOCUMENT_TYPE_GLOBAL_ENTRY_CARD: GLOBAL_ENTRY_CARD\n - DOCUMENT_TYPE_GREEN_CARD: GREEN_CARD\n - DOCUMENT_TYPE_IDENTIFICATION_DOCUMENT: IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_IMMIGRANT_VISA: IMMIGRANT_VISA\n - DOCUMENT_TYPE_INDIVIDUAL_NUMBER_CARD: INDIVIDUAL_NUMBER_CARD\n - DOCUMENT_TYPE_INTERNAL_PASSPORT: INTERNAL_PASSPORT\n - DOCUMENT_TYPE_MAINLAND_TRAVEL_PERMIT_TAIWAN: MAINLAND_TRAVEL_PERMIT_TAIWAN\n - DOCUMENT_TYPE_MILITARY_IDENTIFICATION_DOCUMENT: MILITARY_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_MINORS_IDENTIFICATION_DOCUMENT: MINORS_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_MINORS_PASSPORT: MINORS_PASSPORT\n - DOCUMENT_TYPE_MINORS_SERVICES_CARD: MINORS_SERVICES_CARD\n - DOCUMENT_TYPE_MULTI_PURPOSE_IDENTIFICATION_DOCUMENT: MULTI_PURPOSE_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_MY_KAD: MY_KAD\n - DOCUMENT_TYPE_MY_KAS: MY_KAS\n - DOCUMENT_TYPE_MY_KID: MY_KID\n - DOCUMENT_TYPE_MY_POLIS: MY_POLIS\n - DOCUMENT_TYPE_MY_PR: MY_PR\n - DOCUMENT_TYPE_MY_TENTERA: MY_TENTERA\n - DOCUMENT_TYPE_NBI_CLEARANCE_DOCUMENT: NBI_CLEARANCE_DOCUMENT\n - DOCUMENT_TYPE_NEXT_GEN_ALIEN_PASSPORT: NEXT_GEN_ALIEN_PASSPORT\n - DOCUMENT_TYPE_NEXT_GEN_PASSPORT: NEXT_GEN_PASSPORT\n - DOCUMENT_TYPE_NEXT_GEN_REFUGEE_PASSPORT: NEXT_GEN_REFUGEE_PASSPORT\n - DOCUMENT_TYPE_NEXUS_CARD: NEXUS_CARD\n - DOCUMENT_TYPE_PASS: PASS\n - DOCUMENT_TYPE_PASSPORT: PASSPORT\n - DOCUMENT_TYPE_PASSPORT_CARD: PASSPORT_CARD\n - DOCUMENT_TYPE_PERMANENT_ACCOUNT_NUMBER_CARD: PERMANENT_ACCOUNT_NUMBER_CARD\n - DOCUMENT_TYPE_POSTAL_IDENTIFICATION_DOCUMENT: POSTAL_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_PROFESSIONAL_CARD: PROFESSIONAL_CARD\n - DOCUMENT_TYPE_PROFESSIONAL_DRIVERS_LICENSE: PROFESSIONAL_DRIVERS_LICENSE\n - DOCUMENT_TYPE_PROOF_OF_AGE_CARD: PROOF_OF_AGE_CARD\n - DOCUMENT_TYPE_PROOF_OF_REGISTRATION: PROOF_OF_REGISTRATION\n - DOCUMENT_TYPE_PROVISIONAL_DRIVERS_LICENSE: PROVISIONAL_DRIVERS_LICENSE\n - DOCUMENT_TYPE_REFUGEE_IDENTIFICATION_DOCUMENT: REFUGEE_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_RESIDENCE_PERMIT: RESIDENCE_PERMIT\n - DOCUMENT_TYPE_RESIDENT_IDENTIFICATION_DOCUMENT: RESIDENT_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_SERVICES_CARD: SERVICES_CARD\n - DOCUMENT_TYPE_SIS_ID: SIS_ID\n - DOCUMENT_TYPE_SOCIAL_SECURITY_CARD: SOCIAL_SECURITY_CARD\n - DOCUMENT_TYPE_SPECIAL_IDENTIFICATION_DOCUMENT: SPECIAL_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_S_PASS: S_PASS\n - DOCUMENT_TYPE_TAX_IDENTIFICATION_DOCUMENT: TAX_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_TEMPORARY_PROTECTION_PERMIT: TEMPORARY_PROTECTION_PERMIT\n - DOCUMENT_TYPE_TEMPORARY_RESIDENCE_PERMIT: TEMPORARY_RESIDENCE_PERMIT\n - DOCUMENT_TYPE_TRIBAL_IDENTIFICATION_DOCUMENT: TRIBAL_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_TWIC_CARD: TWIC_CARD\n - DOCUMENT_TYPE_UNIFORMED_SERVICES_IDENTIFICATION_DOCUMENT: UNIFORMED_SERVICES_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_VETERAN_IDENTIFICATION_DOCUMENT: VETERAN_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_VISA: VISA\n - DOCUMENT_TYPE_VOTER_IDENTIFICATION_DOCUMENT: VOTER_IDENTIFICATION_DOCUMENT\n - DOCUMENT_TYPE_WEAPON_PERMIT: WEAPON_PERMIT\n - DOCUMENT_TYPE_WORK_PERMIT: WORK_PERMIT\n - DOCUMENT_TYPE_IKAD: iKAD"
+    },
+    "v1Mrz": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "title": "Mrz status",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1MrzStatus"
+            }
+          ]
+        },
+        "fields": {
+          "title": "fields - data decoded from MRZ. Empty if status is STATUS_INVALID_FORMAT",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1MrzFields"
+            }
+          ]
+        },
+        "mrzCode": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "\"Raw\" mrz code, value that we OCR-ed from the document and decoded in \"fields\" field.\nDepending on MRZ type, this field will contain one, two or three string values."
+        }
+      },
+      "title": "MrzResult"
+    },
+    "v1MrzFields": {
+      "type": "object",
+      "properties": {
+        "documentType": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "documentNumber": {
+          "type": "string"
+        },
+        "birthdate": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "string"
+        },
+        "expiryDate": {
+          "type": "string"
+        },
+        "nationality": {
+          "type": "string"
+        },
+        "finalCheckDigit": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "givenName": {
+          "type": "string"
+        },
+        "optionalData1": {
+          "type": "string"
+        },
+        "optionalData2": {
+          "type": "string"
+        },
+        "isVisa": {
+          "type": "boolean",
+          "title": "is_visa - true for VISAs' MRZ"
+        }
+      },
+      "title": "MrzFields - a set of fields extracted from MRZ. Any of the fields can be empty!!\nDepending on what was stored in the MRZ"
+    },
+    "v1MrzStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_OK",
+        "STATUS_INVALID_FORMAT",
+        "STATUS_CHECK_DIGIT_INVALID"
+      ],
+      "default": "STATUS_OK",
+      "description": "- STATUS_OK: Mrz successfully detected, read and parsed\n - STATUS_INVALID_FORMAT: Mrz successfully detected, but value that was OCR-ed was not a valid MRZ format\n - STATUS_CHECK_DIGIT_INVALID: Mrz successfully detected, read but checksum digits did not match the content encoded in the MRZ",
+      "title": "Mrz Status"
+    },
+    "v1Pdf417Barcode": {
+      "type": "object",
+      "properties": {
+        "jurisdictionSpecifiedVehicleClass": {
+          "type": "string",
+          "description": "JurisdictionSpecifiedVehicleClass denotes the vehicle class specified by the jurisdiction.\nAvailable only for DL documents."
+        },
+        "jurisdictionSpecifiedRestrictionCodes": {
+          "type": "string",
+          "description": "JurisdictionSpecifiedRestrictionCodes represents codes that indicate\nrestrictions to driving privileges (e.g., airbrakes, automatic transmission). (b. DCB)\nAvailable only for DL documents."
+        },
+        "jurisdictionSpecifiedEndorsementCodes": {
+          "type": "string",
+          "description": "JurisdictionSpecifiedEndorsementCodes represents codes that signify\nadditional privileges granted to the cardholder beyond the vehicle class. (c. DCD)\nAvailable only for DL documents."
+        },
+        "documentExpirationDate": {
+          "type": "string",
+          "title": "DocumentExpirationDate denotes the date on which the driving and identification\nprivileges granted by the document are no longer valid. (MMDDCCYY for U.S.,\nCCYYMMDD for Canada). (d. DBA)"
+        },
+        "customerFamilyName": {
+          "type": "string",
+          "title": "CustomerFamilyName indicates the family name of the cardholder (sometimes\ncalled \"last name\" or \"surname\"). (e. DCS)"
+        },
+        "customerFirstName": {
+          "type": "string",
+          "title": "CustomerFirstName denotes the first name of the cardholder. (f. DAC)"
+        },
+        "customerMiddleNames": {
+          "type": "string",
+          "title": "CustomerMiddleNames represents the middle name(s) of the cardholder;\nif there are multiple middle names, they shall be separated by a comma. (g. DAD)"
+        },
+        "documentIssueDate": {
+          "type": "string",
+          "title": "DocumentIssueDate indicates the date on which the document was issued.\n(MMDDCCYY for U.S., CCYYMMDD for Canada). (h. DBD)"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "title": "DateOfBirth denotes the date on which the cardholder was born.\n(MMDDCCYY for U.S., CCYYMMDD for Canada). (i. DBB)"
+        },
+        "gender": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Gender represents the gender of the cardholder; 1 = male,\n2 = female, 9 = not specified. (j. DBC)"
+        },
+        "eyeColor": {
+          "type": "string",
+          "title": "EyeColor indicates the color of the cardholder's eyes using ANSI D-20 codes. (k. DAY)"
+        },
+        "height": {
+          "type": "string",
+          "title": "Height represents the height of the cardholder; inches (in) or centimeters (cm). (l. DAU)"
+        },
+        "addressStreet1": {
+          "type": "string",
+          "title": "AddressStreet1 denotes the street portion of the cardholder's address. (m. DAG)"
+        },
+        "addressCity": {
+          "type": "string",
+          "title": "AddressCity indicates the city portion of the cardholder's address. (n. DAI)"
+        },
+        "jurisdictionCode": {
+          "type": "string",
+          "title": "JurisdictionCode represents the state portion of the cardholder's address. (o. DAJ)"
+        },
+        "postalCode": {
+          "type": "string",
+          "title": "PostalCode indicates the postal code portion of the cardholder's address in the U.S.\nand Canada, using zeros to fill any trailing portion up to nine digits if unknown. (p. DAK)"
+        },
+        "customerId": {
+          "type": "string",
+          "title": "CustomerID represents a number assigned or calculated by the issuing authority. (q. DAQ)"
+        },
+        "documentDiscriminator": {
+          "type": "string",
+          "title": "DocumentDiscriminator uniquely identifies a particular document issued to that customer\nfrom others that may have been issued in the past; serves multiple purposes including\ndocument discrimination, audit information number, and/or inventory control. (r. DCF)"
+        },
+        "countryIdentification": {
+          "type": "string",
+          "title": "CountryIdentification indicates the country in which DL/ID is issued; U.S. = USA, Canada = CAN. (s. DCG)"
+        },
+        "familyNameTruncation": {
+          "type": "string",
+          "title": "FamilyNameTruncation indicates whether a field has been truncated: T = truncated,\nN = not truncated, U = unknown if truncated. (t. DDE)"
+        },
+        "firstNameTruncation": {
+          "type": "string",
+          "title": "FirstNameTruncation indicates whether a field has been truncated: T = truncated,\nN = not truncated, U = unknown if truncated. (u. DDF)"
+        },
+        "middleNameTruncation": {
+          "type": "string",
+          "title": "MiddleNameTruncation indicates whether a field has been truncated: T = truncated,\nN = not truncated, U = unknown if truncated. (v. DDG)"
+        },
+        "optionalFields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Pdf417BarcodeOptionalField"
+          },
+          "description": "Repeated field for optional fields."
+        }
+      },
+      "description": "Pdf417Barcode - holds data extracted from PDF417 barcode detected on the document."
+    },
+    "v1Polygon": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "y": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
+      "title": "Polygon"
+    },
+    "v1Quad": {
+      "type": "object",
+      "properties": {
+        "x1": {
+          "type": "number",
+          "format": "float"
+        },
+        "y1": {
+          "type": "number",
+          "format": "float"
+        },
+        "x2": {
+          "type": "number",
+          "format": "float"
+        },
+        "y2": {
+          "type": "number",
+          "format": "float"
+        },
+        "x3": {
+          "type": "number",
+          "format": "float"
+        },
+        "y3": {
+          "type": "number",
+          "format": "float"
+        },
+        "x4": {
+          "type": "number",
+          "format": "float"
+        },
+        "y4": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "title": "Quad"
+    },
+    "v1ScanConfig": {
+      "type": "object",
+      "properties": {
+        "returnDocumentImage": {
+          "description": "returnDetectedImage - must be set if you want server to return the image of the detected document.\nused to specify to the server to return detected document\ndewarped image. Unless this is a HARD REQUIREMENT we do not recommend to use\nthis due to its computational and data overhead.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ScanConfigReturnImage"
+            }
+          ]
+        },
+        "returnTextFieldImages": {
+          "description": "returnFieldImages - must be set if you want server to return the images of the detected text fields.\nleaving this empty means that server will NOT return any text field images (text only).",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ScanConfigReturnTextFieldImages"
+            }
+          ]
+        },
+        "returnVisualFields": {
+          "description": "returnVisualFields - specify visual fields to return.\nif left empty, NO visual fields will be returned.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ScanConfigReturnVisualFields"
+            }
+          ]
+        },
+        "returnDateFieldImages": {
+          "description": "returnDateFieldImages - must be se set if you want server to return the images of the detected date fields.\nleaving this empty means that server will NOT return any date field images (text only).",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ScanConfigReturnDateFieldImages"
+            }
+          ]
+        },
+        "returnSexFieldImages": {
+          "description": "returnSexFieldImages - must be set if you want server to return the images of the detected sex fields.\nleaving this empty means that server will NOT return any sex field images (text and enum only).",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ScanConfigReturnSexFieldImages"
+            }
+          ]
+        },
+        "skipDocumentDetection": {
+          "type": "boolean",
+          "description": "skipDocumentDetection - if you want to \"skip\" document detection, set this to true.\nif you already have a full-size image of a document (or already cropped image of a document)\nset this to true."
+        }
+      },
+      "description": "ScanConfig - used to define if you want server to return the detected document\nimage as well as the images of different detected fields."
+    },
+    "v1ScanDocumentRequest": {
+      "type": "object",
+      "properties": {
+        "imageJpeg": {
+          "type": "string",
+          "format": "byte",
+          "title": "image jpeg data bytes. If using http gateway (rest w json) this is base64 encoded string of image jpeg bytes"
+        },
+        "config": {
+          "description": "config - optional, this can be set to configure some server parameters and what do you want the server to\nreturn. This includes selection of returning images, selecting fields etc.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1ScanConfig"
+            }
+          ]
+        }
+      },
+      "title": "ScanDocumentRequest"
+    },
+    "v1ScanDocumentResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "title": "status defines success level of the scan",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1ScanDocumentResponseStatus"
+            }
+          ]
+        },
+        "detection": {
+          "title": "detection is a quadrilateral of detected document in given Request image.\nwill be empty if status is DOCUMENT_NOT_FOUND",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1Quad"
+            }
+          ]
+        },
+        "classification": {
+          "title": "classification holds detected document class. Will be empty if status is not OK",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1DocumentClass"
+            }
+          ]
+        },
+        "data": {
+          "title": "data holds all information extracted from the document\nIt will be empty if status is STATUS_DOCUMENT_NOT_FOUND",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1DocumentData"
+            }
+          ]
+        },
+        "documentImage": {
+          "type": "string",
+          "format": "byte",
+          "title": "Optional, empty by default, returned if specified in requests \"config\" field.\nWill empty if status is DOCUMENT_NOT_FOUND"
+        }
+      },
+      "title": "ScanDocumentResponse"
+    },
+    "v1ScanDocumentResponseStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_OK",
+        "STATUS_DOCUMENT_NOT_FOUND",
+        "STATUS_DOCUMENT_NOT_SUPPORTED",
+        "STATUS_DOCUMENT_BACK_SIDE"
+      ],
+      "default": "STATUS_OK",
+      "description": "- STATUS_OK: Document successfully detected, classified and extracted\n - STATUS_DOCUMENT_NOT_FOUND: Document not found\n - STATUS_DOCUMENT_NOT_SUPPORTED: Document successfully detected, but not supported for extraction\n - STATUS_DOCUMENT_BACK_SIDE: Document successfully detected, supported for extraction, but it is a back side of the document",
+      "title": "Status - response status"
+    },
+    "v1ScanTwoSidedDocumentRequest": {
+      "type": "object",
+      "properties": {
+        "firstImage": {
+          "type": "string",
+          "format": "byte",
+          "title": "image jpeg data bytes. If using http gateway (rest w json) this is base64 encoded string of image jpeg bytes"
+        },
+        "secondImage": {
+          "type": "string",
+          "format": "byte",
+          "title": "image jpeg data bytes. If using http gateway (rest w json) this is base64 encoded string of image jpeg bytes"
+        },
+        "config": {
+          "description": "config - optional, this can be set to configure some server parameters and what do you want the server to\nreturn. This includes selection of returning images, selecting fields etc.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1ScanConfig"
+            }
+          ]
+        }
+      }
+    },
+    "v1ScanTwoSidedDocumentResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "title": "status defines success level of the scan",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1ScanTwoSidedDocumentResponseStatus"
+            }
+          ]
+        },
+        "classification": {
+          "title": "classification holds detected document class. Will be empty if status is STATUS_FRONT_SIDE_NOT_FOUND or STATUS_NOT_SUPPORTED",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1DocumentClass"
+            }
+          ]
+        },
+        "data": {
+          "title": "data holds all information extracted from both sides of the document",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1DocumentData"
+            }
+          ]
+        },
+        "frontSideDocumentImage": {
+          "type": "string",
+          "format": "byte",
+          "title": "Optional, empty by default, returned if specified in requests \"config\" field.\nWill empty if document detection failed on the front image in the request"
+        },
+        "backSideDocumentImage": {
+          "type": "string",
+          "format": "byte",
+          "title": "Optional, empty by default, returned if specified in requests \"config\" field.\nWill empty if document detection failed on the back image in the request"
+        }
+      }
+    },
+    "v1ScanTwoSidedDocumentResponseStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_OK",
+        "STATUS_FRONT_SIDE_NOT_FOUND",
+        "STATUS_BACK_SIDE_NOT_FOUND",
+        "STATUS_NOT_SUPPORTED"
+      ],
+      "default": "STATUS_OK",
+      "title": "- STATUS_OK: Successfully scanned both sides of the document\n - STATUS_FRONT_SIDE_NOT_FOUND: Front side of the document not found\n - STATUS_BACK_SIDE_NOT_FOUND: Back side of the document not found\n - STATUS_NOT_SUPPORTED: Document not supported"
+    },
+    "v1SexField": {
+      "type": "object",
+      "properties": {
+        "sex": {
+          "title": "sex - holds enum value if it was successfully parsed, UNKNOWN otherwise",
+          "allOf": [
+            {
+              "$ref": "#/definitions/SexFieldSex"
+            }
+          ]
+        },
+        "value": {
+          "type": "string",
+          "title": "textValue - holds OCR-ed value of the field"
+        },
+        "alphabet": {
+          "$ref": "#/definitions/v1Alphabet"
+        },
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "title": "optional, empty by default, returned if specified in the ScanDocumentRequest"
+        },
+        "location": {
+          "title": "EMPTY BY DEFAULT, the location of the field on the input image. Available depending\non user license plan",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ddxv1Location"
+            }
+          ]
+        }
+      },
+      "title": "SexField - holds gender information"
+    },
+    "v1TextField": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "title": "type - field type",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1TextFieldType"
+            }
+          ]
+        },
+        "value": {
+          "type": "string",
+          "title": "OCR text value of the field"
+        },
+        "alphabet": {
+          "$ref": "#/definitions/v1Alphabet"
+        },
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "title": "optional, empty by default, returned if specified in the ScanDocumentRequest"
+        },
+        "location": {
+          "title": "EMPTY BY DEFAULT, the location of the field on the input image. Available depending\non user license plan",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ddxv1Location"
+            }
+          ]
+        }
+      },
+      "description": "TextField - contains information of a single field detection on a document."
+    },
+    "v1TextFieldType": {
+      "type": "string",
+      "enum": [
+        "TYPE_FIRST_NAME",
+        "TYPE_LAST_NAME",
+        "TYPE_NATIONALITY",
+        "TYPE_DOCUMENT_IDENTITY_NUMBER",
+        "TYPE_ISSUING_AUTHORITY",
+        "TYPE_ADDRESS",
+        "TYPE_PERSONAL_IDENTITY_NUMBER",
+        "TYPE_MARITAL_STATUS",
+        "TYPE_EXTENDED_ADDRESS",
+        "TYPE_EXTENDED_ADDRESS_SPECIFICS",
+        "TYPE_CLASS",
+        "TYPE_CONDITIONS",
+        "TYPE_ENDORSEMENTS",
+        "TYPE_DRIVERS_LICENSE_TYPE",
+        "TYPE_FULL_NAME",
+        "TYPE_PLACE_OF_BIRTH",
+        "TYPE_PROFESSION",
+        "TYPE_EMPLOYER",
+        "TYPE_EXTENDED_NAME",
+        "TYPE_FATHERS_NAME",
+        "TYPE_MOTHERS_NAME",
+        "TYPE_RACE",
+        "TYPE_RESIDENTIAL_TYPE",
+        "TYPE_RESTRICTIONS",
+        "TYPE_BLOOD_TYPE",
+        "TYPE_NUMBER"
+      ],
+      "default": "TYPE_FIRST_NAME",
+      "description": "Type - an enum specifying field type. Eg. \"First name\", \"Last name\", \"Address\", etc.\n\n - TYPE_FIRST_NAME: Represents the first name of an individual\n - TYPE_LAST_NAME: Represents the last name of an individual\n - TYPE_NATIONALITY: Represents the nationality of an individual\n - TYPE_DOCUMENT_IDENTITY_NUMBER: Represents the unique number assigned to a document\n - TYPE_ISSUING_AUTHORITY: Represents the authority that issued a document\n - TYPE_ADDRESS: Represents the address of an individual\n - TYPE_PERSONAL_IDENTITY_NUMBER: Represents a unique personal identification number, such as OIB\n - TYPE_MARITAL_STATUS: Represents the marital status of an individual\n - TYPE_EXTENDED_ADDRESS: Represents additional information about an address\n - TYPE_EXTENDED_ADDRESS_SPECIFICS: Represents additional information about an address (second part)\n - TYPE_CLASS: Represents a classification or category\n - TYPE_CONDITIONS: Represents conditions or restrictions\n - TYPE_ENDORSEMENTS: Represents endorsements or special permissions\n - TYPE_DRIVERS_LICENSE_TYPE: Represents the type of licence or permit\n - TYPE_FULL_NAME: Represents the full name of an individual\n - TYPE_PLACE_OF_BIRTH: Represents the place of birth of an individual\n - TYPE_PROFESSION: Represents the profession or occupation of an individual\n - TYPE_EMPLOYER: Represents the employer of an individual\n - TYPE_EXTENDED_NAME: Represents additional information about a name\n - TYPE_FATHERS_NAME: Represents the father's name of an individual\n - TYPE_MOTHERS_NAME: Represents the mother's name of an individual\n - TYPE_RACE: Represents the race or ethnicity of an individual\n - TYPE_RESIDENTIAL_TYPE: Represents the residential status of an individual\n - TYPE_RESTRICTIONS: Represents restrictions or limitations\n - TYPE_BLOOD_TYPE: Represents the blood type of an individual\n - TYPE_NUMBER: Represents an additional numbers/codes that can appear on some documents"
+    },
+    "v1VisualField": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/v1VisualFieldType"
+        },
+        "image": {
+          "type": "string",
+          "format": "byte"
+        },
+        "location": {
+          "title": "EMPTY BY DEFAULT, the location of the field on the input image. Available depending\non user license plan",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ddxv1Location"
+            }
+          ]
+        }
+      },
+      "title": "VisualField - holds information about a visual field"
+    },
+    "v1VisualFieldType": {
+      "type": "string",
+      "enum": [
+        "TYPE_FACE_PHOTO",
+        "TYPE_SIGNATURE"
+      ],
+      "default": "TYPE_FACE_PHOTO",
+      "description": "Type - an enum specifying field types that are visual fields.\neg. \"Face photo\", \"Signature\", etc.\n\n - TYPE_FACE_PHOTO: Face photo\n - TYPE_SIGNATURE: Signature"
+    }
+  }
+}

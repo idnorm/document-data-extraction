@@ -11,9 +11,9 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- IDENTIFICATION_DOCUMENT
-  
 - PASSPORT
+  
+- IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -23,8 +23,6 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
 - DRIVER_CARD
   
 - IDENTIFICATION_DOCUMENT
@@ -32,6 +30,8 @@ for each country and/or region.
 - PROFESSIONAL_DRIVERS_LICENSE
   
 - NEXT_GEN_PASSPORT
+  
+- DRIVERS_LICENSE
   
 
 ---
@@ -65,13 +65,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- PASSPORT
+  
 - ALIEN_IDENTIFICATION_DOCUMENT
   
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
-  
-- PASSPORT
   
 
 ---
@@ -106,8 +106,8 @@ for each country and/or region.
 - IDENTIFICATION_DOCUMENT
 #### For TERRITORY Northern Territory we support:
 
-- PROOF_OF_AGE_CARD
 - DRIVERS_LICENSE
+- PROOF_OF_AGE_CARD
 #### For TERRITORY Queensland we support:
 
 - DRIVERS_LICENSE
@@ -175,11 +175,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- PASSPORT
-  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
+  
+- PASSPORT
   
 
 ---
@@ -189,11 +189,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
 - IDENTIFICATION_DOCUMENT
   
 - PASSPORT
+  
+- DRIVERS_LICENSE
   
 
 ---
@@ -215,15 +215,15 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- NEXT_GEN_PASSPORT
-  
-- DRIVERS_LICENSE
-  
 - IDENTIFICATION_DOCUMENT
   
 - PASSPORT
   
 - RESIDENCE_PERMIT
+  
+- NEXT_GEN_PASSPORT
+  
+- DRIVERS_LICENSE
   
 
 ---
@@ -233,23 +233,23 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- NEXT_GEN_PASSPORT
+- DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
   
 - MINORS_IDENTIFICATION_DOCUMENT
   
-- PASSPORT
-  
 - PROVISIONAL_DRIVERS_LICENSE
+  
+- NEXT_GEN_PASSPORT
+  
+- PASSPORT
   
 - RESIDENCE_PERMIT
   
 - RESIDENT_IDENTIFICATION_DOCUMENT
   
 - SPECIAL_IDENTIFICATION_DOCUMENT
-  
-- DRIVERS_LICENSE
-  
-- IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -269,13 +269,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
 - IDENTIFICATION_DOCUMENT
   
 - MINORS_IDENTIFICATION_DOCUMENT
   
 - PASSPORT
+  
+- DRIVERS_LICENSE
   
 
 ---
@@ -299,15 +299,15 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- IDENTIFICATION_DOCUMENT
-  
-- PASSPORT
-  
 - ALIEN_IDENTIFICATION_DOCUMENT
   
 - CONSULAR_PASSPORT
   
 - DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
+  
+- PASSPORT
   
 #### For TERRITORY Alagoas we support:
 
@@ -410,11 +410,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- PASSPORT
+  
 - NEXT_GEN_PASSPORT
   
 - IDENTIFICATION_DOCUMENT
-  
-- PASSPORT
   
 
 ---
@@ -424,8 +424,6 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- VISA
-  
 - WEAPON_PERMIT
   
 - CITIZENSHIP_CERTIFICATE
@@ -439,6 +437,8 @@ for each country and/or region.
 - SOCIAL_SECURITY_CARD
   
 - TRIBAL_IDENTIFICATION_DOCUMENT
+  
+- VISA
   
 #### For TERRITORY Alberta we support:
 
@@ -475,8 +475,8 @@ for each country and/or region.
 - DRIVERS_LICENSE
 #### For TERRITORY Ontario we support:
 
-- DRIVERS_LICENSE
 - IDENTIFICATION_DOCUMENT
+- DRIVERS_LICENSE
 #### For TERRITORY Prince Edward Island we support:
 
 - DRIVERS_LICENSE
@@ -485,8 +485,8 @@ for each country and/or region.
 - DRIVERS_LICENSE
 #### For TERRITORY Saskatchewan we support:
 
-- IDENTIFICATION_DOCUMENT
 - DRIVERS_LICENSE
+- IDENTIFICATION_DOCUMENT
 #### For TERRITORY Yukon we support:
 
 - DRIVERS_LICENSE
@@ -507,13 +507,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- ALIEN_IDENTIFICATION_DOCUMENT
-  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
   
 - NEXT_GEN_PASSPORT
+  
+- ALIEN_IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -561,11 +561,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
 - IDENTIFICATION_DOCUMENT
   
 - PASSPORT
+  
+- DRIVERS_LICENSE
   
 
 ---
@@ -575,13 +575,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- IDENTIFICATION_DOCUMENT
-  
-- RESIDENCE_PERMIT
-  
 - NEXT_GEN_PASSPORT
   
 - DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
+  
+- RESIDENCE_PERMIT
   
 
 ---
@@ -619,13 +619,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- DRIVERS_LICENSE
+  
 - IDENTIFICATION_DOCUMENT
   
 - RESIDENCE_PERMIT
   
 - NEXT_GEN_PASSPORT
-  
-- DRIVERS_LICENSE
   
 
 ---
@@ -675,11 +675,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- PASSPORT
+  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
-  
-- PASSPORT
   
 
 ---
@@ -689,11 +689,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- DRIVERS_LICENSE
+  
 - IDENTIFICATION_DOCUMENT
   
 - PASSPORT
-  
-- DRIVERS_LICENSE
   
 
 ---
@@ -715,8 +715,6 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- NEXT_GEN_PASSPORT
-  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
@@ -724,6 +722,8 @@ for each country and/or region.
 - PASSPORT
   
 - RESIDENCE_PERMIT
+  
+- NEXT_GEN_PASSPORT
   
 
 ---
@@ -733,15 +733,15 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
-- IDENTIFICATION_DOCUMENT
-  
 - RESIDENCE_PERMIT
   
 - NEXT_GEN_PASSPORT
   
 - ALIEN_IDENTIFICATION_DOCUMENT
+  
+- DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -751,15 +751,15 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
+  
 - PASSPORT
   
 - PROFESSIONAL_CARD
   
 - RESIDENCE_PERMIT
-  
-- DRIVERS_LICENSE
-  
-- IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -783,10 +783,6 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- RESIDENCE_PERMIT
-  
-- NEXT_GEN_PASSPORT
-  
 - E_ID
   
 - DRIVERS_LICENSE
@@ -798,6 +794,10 @@ for each country and/or region.
 - MINORS_PASSPORT
   
 - PASSPORT
+  
+- RESIDENCE_PERMIT
+  
+- NEXT_GEN_PASSPORT
   
 
 ---
@@ -837,15 +837,15 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- IDENTIFICATION_DOCUMENT
-  
-- PASSPORT
-  
 - ALIEN_IDENTIFICATION_DOCUMENT
   
 - CONSULAR_IDENTIFICATION_DOCUMENT
   
 - DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
+  
+- PASSPORT
   
 
 ---
@@ -855,11 +855,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- PASSPORT
+  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
-  
-- PASSPORT
   
 
 ---
@@ -883,9 +883,9 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- NEXT_GEN_PASSPORT
-  
 - IDENTIFICATION_DOCUMENT
+  
+- NEXT_GEN_PASSPORT
   
 
 ---
@@ -895,6 +895,8 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- ADDRESS_CARD
+  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
@@ -902,8 +904,6 @@ for each country and/or region.
 - PASSPORT
   
 - RESIDENCE_PERMIT
-  
-- ADDRESS_CARD
   
 
 ---
@@ -913,11 +913,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- RESIDENCE_PERMIT
+  
 - DRIVERS_LICENSE
   
 - PASSPORT
-  
-- RESIDENCE_PERMIT
   
 
 ---
@@ -927,6 +927,10 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
+  
 - PERMANENT_ACCOUNT_NUMBER_CARD
   
 - PASSPORT
@@ -934,10 +938,6 @@ for each country and/or region.
 - VISA
   
 - VOTER_IDENTIFICATION_DOCUMENT
-  
-- DRIVERS_LICENSE
-  
-- IDENTIFICATION_DOCUMENT
   
 #### For TERRITORY Andhra Pradesh we support:
 
@@ -974,13 +974,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- PASSPORT
-  
 - NEXT_GEN_PASSPORT
   
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
+  
+- PASSPORT
   
 
 ---
@@ -1032,11 +1032,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- DRIVERS_LICENSE
+  
 - IDENTIFICATION_DOCUMENT
   
 - PASSPORT
-  
-- DRIVERS_LICENSE
   
 
 ---
@@ -1086,13 +1086,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- INDIVIDUAL_NUMBER_CARD
+  
 - PASSPORT
   
 - RESIDENCE_PERMIT
   
 - DRIVERS_LICENSE
-  
-- INDIVIDUAL_NUMBER_CARD
   
 
 ---
@@ -1138,11 +1138,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- PASSPORT
+  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
-  
-- PASSPORT
   
 
 ---
@@ -1152,13 +1152,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- PASSPORT
-  
 - RESIDENT_IDENTIFICATION_DOCUMENT
   
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
+  
+- PASSPORT
   
 
 ---
@@ -1168,6 +1168,8 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- NEXT_GEN_PASSPORT
+  
 - ALIEN_IDENTIFICATION_DOCUMENT
   
 - DRIVERS_LICENSE
@@ -1177,8 +1179,6 @@ for each country and/or region.
 - RESIDENCE_PERMIT
   
 - NEXT_GEN_ALIEN_PASSPORT
-  
-- NEXT_GEN_PASSPORT
   
 
 ---
@@ -1242,27 +1242,27 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
-- MY_KAD
-  
 - MY_KAS
-  
-- PASS
-  
-- REFUGEE_IDENTIFICATION_DOCUMENT
-  
-- NEXT_GEN_PASSPORT
-  
-- iKAD
   
 - MY_KID
   
 - MY_PR
   
-- MY_POLIS
-  
 - MY_TENTERA
+  
+- PASS
+  
+- REFUGEE_IDENTIFICATION_DOCUMENT
+  
+- DRIVERS_LICENSE
+  
+- MY_KAD
+  
+- NEXT_GEN_PASSPORT
+  
+- iKAD
+  
+- MY_POLIS
   
 
 ---
@@ -1312,21 +1312,21 @@ for each country and/or region.
 
 - RESIDENCE_PERMIT
   
-- TAX_IDENTIFICATION_DOCUMENT
+- CONSULAR_IDENTIFICATION_DOCUMENT
   
 - PASSPORT
   
+- PROFESSIONAL_DRIVERS_LICENSE
+  
 - PROFESSIONAL_CARD
   
-- PROFESSIONAL_DRIVERS_LICENSE
+- CONSULAR_VOTER_IDENTIFICATION_DOCUMENT
   
 - NEXT_GEN_PASSPORT
   
+- TAX_IDENTIFICATION_DOCUMENT
+  
 - VOTER_IDENTIFICATION_DOCUMENT
-  
-- CONSULAR_IDENTIFICATION_DOCUMENT
-  
-- CONSULAR_VOTER_IDENTIFICATION_DOCUMENT
   
 #### For TERRITORY Aguascalientes we support:
 
@@ -1458,11 +1458,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- NEXT_GEN_PASSPORT
-  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
+  
+- NEXT_GEN_PASSPORT
   
 
 ---
@@ -1496,9 +1496,9 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- NEXT_GEN_PASSPORT
-  
 - PASSPORT
+  
+- NEXT_GEN_PASSPORT
   
 
 ---
@@ -1508,15 +1508,15 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
-- IDENTIFICATION_DOCUMENT
-  
 - RESIDENCE_PERMIT
   
 - NEXT_GEN_PASSPORT
   
 - ALIEN_IDENTIFICATION_DOCUMENT
+  
+- DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -1548,15 +1548,15 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- VOTER_IDENTIFICATION_DOCUMENT
-  
-- DRIVERS_LICENSE
-  
 - IDENTIFICATION_DOCUMENT
   
 - PASSPORT
   
 - NEXT_GEN_PASSPORT
+  
+- VOTER_IDENTIFICATION_DOCUMENT
+  
+- DRIVERS_LICENSE
   
 
 ---
@@ -1596,13 +1596,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- RESIDENT_IDENTIFICATION_DOCUMENT
+  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
   
 - PASSPORT
-  
-- RESIDENT_IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -1612,13 +1612,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- PROOF_OF_REGISTRATION
-  
 - CONSULAR_IDENTIFICATION_DOCUMENT
   
 - IDENTIFICATION_DOCUMENT
   
 - PASSPORT
+  
+- PROOF_OF_REGISTRATION
   
 
 #### For TERRITORY Khyber Pakhtunkhwa we support:
@@ -1674,6 +1674,8 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- DRIVERS_LICENSE
+  
 - IDENTIFICATION_DOCUMENT
   
 - MINORS_IDENTIFICATION_DOCUMENT
@@ -1681,8 +1683,6 @@ for each country and/or region.
 - PASSPORT
   
 - ALIEN_IDENTIFICATION_DOCUMENT
-  
-- DRIVERS_LICENSE
   
 
 ---
@@ -1692,25 +1692,25 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
-- IDENTIFICATION_DOCUMENT
-  
 - MULTI_PURPOSE_IDENTIFICATION_DOCUMENT
   
 - POSTAL_IDENTIFICATION_DOCUMENT
   
 - PROFESSIONAL_CARD
   
-- TAX_IDENTIFICATION_DOCUMENT
+- SOCIAL_SECURITY_CARD
   
 - ALIEN_IDENTIFICATION_DOCUMENT
+  
+- DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
   
 - NBI_CLEARANCE_DOCUMENT
   
 - PASSPORT
   
-- SOCIAL_SECURITY_CARD
+- TAX_IDENTIFICATION_DOCUMENT
   
 - VOTER_IDENTIFICATION_DOCUMENT
   
@@ -1770,13 +1770,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
-- IDENTIFICATION_DOCUMENT
-  
 - PASSPORT
   
 - RESIDENCE_PERMIT
+  
+- DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -1840,13 +1840,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- RESIDENT_IDENTIFICATION_DOCUMENT
+  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
   
 - PASSPORT
-  
-- RESIDENT_IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -1870,6 +1870,8 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- DRIVERS_LICENSE
+  
 - EMPLOYMENT_PASS
   
 - FIN_CARD
@@ -1884,8 +1886,6 @@ for each country and/or region.
   
 - WORK_PERMIT
   
-- DRIVERS_LICENSE
-  
 
 ---
 ## Slovakia
@@ -1894,13 +1894,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- RESIDENCE_PERMIT
-  
-- NEXT_GEN_PASSPORT
-  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
+  
+- RESIDENCE_PERMIT
+  
+- NEXT_GEN_PASSPORT
   
 
 ---
@@ -1910,13 +1910,13 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
-- IDENTIFICATION_DOCUMENT
-  
 - RESIDENCE_PERMIT
   
 - NEXT_GEN_PASSPORT
+  
+- DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -1954,15 +1954,15 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- ALIEN_IDENTIFICATION_DOCUMENT
+  
+- DRIVERS_LICENSE
+  
 - IDENTIFICATION_DOCUMENT
   
 - PASSPORT
   
 - RESIDENCE_PERMIT
-  
-- ALIEN_IDENTIFICATION_DOCUMENT
-  
-- DRIVERS_LICENSE
   
 
 ---
@@ -1996,8 +1996,6 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- NEXT_GEN_PASSPORT
-  
 - NEXT_GEN_REFUGEE_PASSPORT
   
 - SIS_ID
@@ -2010,6 +2008,8 @@ for each country and/or region.
   
 - RESIDENCE_PERMIT
   
+- NEXT_GEN_PASSPORT
+  
 
 ---
 ## Switzerland
@@ -2018,15 +2018,15 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
-- IDENTIFICATION_DOCUMENT
-  
 - PASSPORT
   
 - RESIDENCE_PERMIT
   
 - NEXT_GEN_PASSPORT
+  
+- DRIVERS_LICENSE
+  
+- IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -2036,9 +2036,9 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- IDENTIFICATION_DOCUMENT
-  
 - TEMPORARY_RESIDENCE_PERMIT
+  
+- IDENTIFICATION_DOCUMENT
   
 
 ---
@@ -2048,11 +2048,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- DRIVERS_LICENSE
+  
 - IDENTIFICATION_DOCUMENT
   
 - VOTER_IDENTIFICATION_DOCUMENT
-  
-- DRIVERS_LICENSE
   
 
 ---
@@ -2126,8 +2126,6 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- DRIVERS_LICENSE
-  
 - IDENTIFICATION_DOCUMENT
   
 - PASSPORT
@@ -2138,6 +2136,8 @@ for each country and/or region.
   
 - NEXT_GEN_PASSPORT
   
+- DRIVERS_LICENSE
+  
 
 ---
 ## Uk
@@ -2146,6 +2146,10 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- NEXT_GEN_PASSPORT
+  
+- VISA
+  
 - ASYLUM_SEEKER_CARD
   
 - DRIVERS_LICENSE
@@ -2156,10 +2160,6 @@ for each country and/or region.
   
 - RESIDENCE_PERMIT
   
-- NEXT_GEN_PASSPORT
-  
-- VISA
-  
 
 ---
 ## Ukraine
@@ -2168,6 +2168,8 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- DRIVERS_LICENSE
+  
 - IDENTIFICATION_DOCUMENT
   
 - RESIDENCE_PERMIT
@@ -2175,8 +2177,6 @@ for each country and/or region.
 - NEXT_GEN_PASSPORT
   
 - TEMPORARY_RESIDENCE_PERMIT
-  
-- DRIVERS_LICENSE
   
 
 ---
@@ -2196,25 +2196,17 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- GREEN_CARD
-  
-- IMMIGRANT_VISA
-  
-- NEXUS_CARD
-  
-- PASSPORT
-  
-- PASSPORT_CARD
-  
 - SOCIAL_SECURITY_CARD
   
 - TWIC_CARD
   
-- WORK_PERMIT
-  
-- BORDER_CROSSING_CARD
-  
 - MILITARY_IDENTIFICATION_DOCUMENT
+  
+- NEXT_GEN_PASSPORT
+  
+- GREEN_CARD
+  
+- PASSPORT_CARD
   
 - UNIFORMED_SERVICES_IDENTIFICATION_DOCUMENT
   
@@ -2222,9 +2214,17 @@ for each country and/or region.
   
 - VISA
   
+- WORK_PERMIT
+  
 - GLOBAL_ENTRY_CARD
   
-- NEXT_GEN_PASSPORT
+- IMMIGRANT_VISA
+  
+- PASSPORT
+  
+- BORDER_CROSSING_CARD
+  
+- NEXUS_CARD
   
 #### For TERRITORY Alabama we support:
 
@@ -2257,8 +2257,8 @@ for each country and/or region.
 
 #### For TERRITORY Delaware we support:
 
-- DRIVERS_LICENSE
 - IDENTIFICATION_DOCUMENT
+- DRIVERS_LICENSE
 #### For TERRITORY District Of Columbia we support:
 
 - DRIVERS_LICENSE
@@ -2273,8 +2273,8 @@ for each country and/or region.
 - IDENTIFICATION_DOCUMENT
 #### For TERRITORY Hawaii we support:
 
-- IDENTIFICATION_DOCUMENT
 - DRIVERS_LICENSE
+- IDENTIFICATION_DOCUMENT
 #### For TERRITORY Idaho we support:
 
 - DRIVERS_LICENSE
@@ -2321,8 +2321,8 @@ for each country and/or region.
 - IDENTIFICATION_DOCUMENT
 #### For TERRITORY Minnesota we support:
 
-- DRIVERS_LICENSE
 - IDENTIFICATION_DOCUMENT
+- DRIVERS_LICENSE
 #### For TERRITORY Mississippi we support:
 
 - DRIVERS_LICENSE
@@ -2337,8 +2337,8 @@ for each country and/or region.
 - IDENTIFICATION_DOCUMENT
 #### For TERRITORY Nebraska we support:
 
-- DRIVERS_LICENSE
 - IDENTIFICATION_DOCUMENT
+- DRIVERS_LICENSE
 #### For TERRITORY Nevada we support:
 
 - DRIVERS_LICENSE
@@ -2368,8 +2368,8 @@ for each country and/or region.
 - IDENTIFICATION_DOCUMENT
 #### For TERRITORY North Dakota we support:
 
-- DRIVERS_LICENSE
 - IDENTIFICATION_DOCUMENT
+- DRIVERS_LICENSE
 #### For TERRITORY Ohio we support:
 
 - DRIVERS_LICENSE
@@ -2409,21 +2409,21 @@ for each country and/or region.
 - WEAPON_PERMIT
 #### For TERRITORY Utah we support:
 
-- DRIVERS_LICENSE
 - DRIVER_PRIVILEGE_CARD
 - IDENTIFICATION_DOCUMENT
+- DRIVERS_LICENSE
 #### For TERRITORY Vermont we support:
 
 - DRIVERS_LICENSE
 - IDENTIFICATION_DOCUMENT
 #### For TERRITORY Virginia we support:
 
-- DRIVERS_LICENSE
 - IDENTIFICATION_DOCUMENT
+- DRIVERS_LICENSE
 #### For TERRITORY Washington we support:
 
-- IDENTIFICATION_DOCUMENT
 - DRIVERS_LICENSE
+- IDENTIFICATION_DOCUMENT
 #### For TERRITORY West Virginia we support:
 
 - DRIVERS_LICENSE
@@ -2434,8 +2434,8 @@ for each country and/or region.
 - IDENTIFICATION_DOCUMENT
 #### For TERRITORY Wyoming we support:
 
-- IDENTIFICATION_DOCUMENT
 - DRIVERS_LICENSE
+- IDENTIFICATION_DOCUMENT
 ---
 ## Uzbekistan
 
@@ -2455,11 +2455,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
-- NEXT_GEN_PASSPORT
-  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
+  
+- NEXT_GEN_PASSPORT
   
 
 ---
@@ -2469,11 +2469,11 @@ for each country and/or region.
 
 ### On a country level, or NOT territory specific we support:
 
+- PASSPORT
+  
 - DRIVERS_LICENSE
   
 - IDENTIFICATION_DOCUMENT
-  
-- PASSPORT
   
 
 ---
