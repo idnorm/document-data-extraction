@@ -2684,188 +2684,180 @@ public final class Fields {
       TYPE_DOCUMENT_IDENTITY_NUMBER(3),
       /**
        * <pre>
-       * Represents the sex of an individual
-       * </pre>
-       *
-       * <code>TYPE_SEX = 4;</code>
-       */
-      TYPE_SEX(4),
-      /**
-       * <pre>
        * Represents the authority that issued a document
        * </pre>
        *
-       * <code>TYPE_ISSUING_AUTHORITY = 5;</code>
+       * <code>TYPE_ISSUING_AUTHORITY = 4;</code>
        */
-      TYPE_ISSUING_AUTHORITY(5),
+      TYPE_ISSUING_AUTHORITY(4),
       /**
        * <pre>
        * Represents the address of an individual
        * </pre>
        *
-       * <code>TYPE_ADDRESS = 6;</code>
+       * <code>TYPE_ADDRESS = 5;</code>
        */
-      TYPE_ADDRESS(6),
+      TYPE_ADDRESS(5),
       /**
        * <pre>
        * Represents a unique personal identification number, such as OIB
        * </pre>
        *
-       * <code>TYPE_PERSONAL_IDENTITY_NUMBER = 7;</code>
+       * <code>TYPE_PERSONAL_IDENTITY_NUMBER = 6;</code>
        */
-      TYPE_PERSONAL_IDENTITY_NUMBER(7),
+      TYPE_PERSONAL_IDENTITY_NUMBER(6),
       /**
        * <pre>
        * Represents the marital status of an individual
        * </pre>
        *
-       * <code>TYPE_MARITAL_STATUS = 8;</code>
+       * <code>TYPE_MARITAL_STATUS = 7;</code>
        */
-      TYPE_MARITAL_STATUS(8),
+      TYPE_MARITAL_STATUS(7),
       /**
        * <pre>
        * Represents additional information about an address
        * </pre>
        *
-       * <code>TYPE_EXTENDED_ADDRESS = 9;</code>
+       * <code>TYPE_EXTENDED_ADDRESS = 8;</code>
        */
-      TYPE_EXTENDED_ADDRESS(9),
+      TYPE_EXTENDED_ADDRESS(8),
       /**
        * <pre>
        * Represents additional information about an address (second part)
        * </pre>
        *
-       * <code>TYPE_EXTENDED_ADDRESS_SPECIFICS = 10;</code>
+       * <code>TYPE_EXTENDED_ADDRESS_SPECIFICS = 9;</code>
        */
-      TYPE_EXTENDED_ADDRESS_SPECIFICS(10),
+      TYPE_EXTENDED_ADDRESS_SPECIFICS(9),
       /**
        * <pre>
        * Represents a classification or category
        * </pre>
        *
-       * <code>TYPE_CLASS = 11;</code>
+       * <code>TYPE_CLASS = 10;</code>
        */
-      TYPE_CLASS(11),
+      TYPE_CLASS(10),
       /**
        * <pre>
        * Represents conditions or restrictions
        * </pre>
        *
-       * <code>TYPE_CONDITIONS = 12;</code>
+       * <code>TYPE_CONDITIONS = 11;</code>
        */
-      TYPE_CONDITIONS(12),
+      TYPE_CONDITIONS(11),
       /**
        * <pre>
        * Represents endorsements or special permissions
        * </pre>
        *
-       * <code>TYPE_ENDORSEMENTS = 13;</code>
+       * <code>TYPE_ENDORSEMENTS = 12;</code>
        */
-      TYPE_ENDORSEMENTS(13),
+      TYPE_ENDORSEMENTS(12),
       /**
        * <pre>
        * Represents the type of licence or permit
        * </pre>
        *
-       * <code>TYPE_DRIVERS_LICENSE_TYPE = 14;</code>
+       * <code>TYPE_DRIVERS_LICENSE_TYPE = 13;</code>
        */
-      TYPE_DRIVERS_LICENSE_TYPE(14),
+      TYPE_DRIVERS_LICENSE_TYPE(13),
       /**
        * <pre>
        * Represents the full name of an individual
        * </pre>
        *
-       * <code>TYPE_FULL_NAME = 15;</code>
+       * <code>TYPE_FULL_NAME = 14;</code>
        */
-      TYPE_FULL_NAME(15),
+      TYPE_FULL_NAME(14),
       /**
        * <pre>
        * Represents the place of birth of an individual
        * </pre>
        *
-       * <code>TYPE_PLACE_OF_BIRTH = 16;</code>
+       * <code>TYPE_PLACE_OF_BIRTH = 15;</code>
        */
-      TYPE_PLACE_OF_BIRTH(16),
+      TYPE_PLACE_OF_BIRTH(15),
       /**
        * <pre>
        * Represents the profession or occupation of an individual
        * </pre>
        *
-       * <code>TYPE_PROFESSION = 17;</code>
+       * <code>TYPE_PROFESSION = 16;</code>
        */
-      TYPE_PROFESSION(17),
+      TYPE_PROFESSION(16),
       /**
        * <pre>
        * Represents the employer of an individual
        * </pre>
        *
-       * <code>TYPE_EMPLOYER = 18;</code>
+       * <code>TYPE_EMPLOYER = 17;</code>
        */
-      TYPE_EMPLOYER(18),
+      TYPE_EMPLOYER(17),
       /**
        * <pre>
        * Represents additional information about a name
        * </pre>
        *
-       * <code>TYPE_EXTENDED_NAME = 19;</code>
+       * <code>TYPE_EXTENDED_NAME = 18;</code>
        */
-      TYPE_EXTENDED_NAME(19),
+      TYPE_EXTENDED_NAME(18),
       /**
        * <pre>
        * Represents the father's name of an individual
        * </pre>
        *
-       * <code>TYPE_FATHERS_NAME = 20;</code>
+       * <code>TYPE_FATHERS_NAME = 19;</code>
        */
-      TYPE_FATHERS_NAME(20),
+      TYPE_FATHERS_NAME(19),
       /**
        * <pre>
        * Represents the mother's name of an individual
        * </pre>
        *
-       * <code>TYPE_MOTHERS_NAME = 21;</code>
+       * <code>TYPE_MOTHERS_NAME = 20;</code>
        */
-      TYPE_MOTHERS_NAME(21),
+      TYPE_MOTHERS_NAME(20),
       /**
        * <pre>
        * Represents the race or ethnicity of an individual
        * </pre>
        *
-       * <code>TYPE_RACE = 22;</code>
+       * <code>TYPE_RACE = 21;</code>
        */
-      TYPE_RACE(22),
+      TYPE_RACE(21),
       /**
        * <pre>
        * Represents the residential status of an individual
        * </pre>
        *
-       * <code>TYPE_RESIDENTIAL_TYPE = 23;</code>
+       * <code>TYPE_RESIDENTIAL_TYPE = 22;</code>
        */
-      TYPE_RESIDENTIAL_TYPE(23),
+      TYPE_RESIDENTIAL_TYPE(22),
       /**
        * <pre>
        * Represents restrictions or limitations
        * </pre>
        *
-       * <code>TYPE_RESTRICTIONS = 24;</code>
+       * <code>TYPE_RESTRICTIONS = 23;</code>
        */
-      TYPE_RESTRICTIONS(24),
+      TYPE_RESTRICTIONS(23),
       /**
        * <pre>
        * Represents the blood type of an individual
        * </pre>
        *
-       * <code>TYPE_BLOOD_TYPE = 25;</code>
+       * <code>TYPE_BLOOD_TYPE = 24;</code>
        */
-      TYPE_BLOOD_TYPE(25),
+      TYPE_BLOOD_TYPE(24),
       /**
        * <pre>
        * Represents an additional numbers/codes that can appear on some documents
        * </pre>
        *
-       * <code>TYPE_NUMBER = 26;</code>
+       * <code>TYPE_NUMBER = 25;</code>
        */
-      TYPE_NUMBER(26),
+      TYPE_NUMBER(25),
       UNRECOGNIZED(-1),
       ;
 
@@ -2912,188 +2904,180 @@ public final class Fields {
       public static final int TYPE_DOCUMENT_IDENTITY_NUMBER_VALUE = 3;
       /**
        * <pre>
-       * Represents the sex of an individual
-       * </pre>
-       *
-       * <code>TYPE_SEX = 4;</code>
-       */
-      public static final int TYPE_SEX_VALUE = 4;
-      /**
-       * <pre>
        * Represents the authority that issued a document
        * </pre>
        *
-       * <code>TYPE_ISSUING_AUTHORITY = 5;</code>
+       * <code>TYPE_ISSUING_AUTHORITY = 4;</code>
        */
-      public static final int TYPE_ISSUING_AUTHORITY_VALUE = 5;
+      public static final int TYPE_ISSUING_AUTHORITY_VALUE = 4;
       /**
        * <pre>
        * Represents the address of an individual
        * </pre>
        *
-       * <code>TYPE_ADDRESS = 6;</code>
+       * <code>TYPE_ADDRESS = 5;</code>
        */
-      public static final int TYPE_ADDRESS_VALUE = 6;
+      public static final int TYPE_ADDRESS_VALUE = 5;
       /**
        * <pre>
        * Represents a unique personal identification number, such as OIB
        * </pre>
        *
-       * <code>TYPE_PERSONAL_IDENTITY_NUMBER = 7;</code>
+       * <code>TYPE_PERSONAL_IDENTITY_NUMBER = 6;</code>
        */
-      public static final int TYPE_PERSONAL_IDENTITY_NUMBER_VALUE = 7;
+      public static final int TYPE_PERSONAL_IDENTITY_NUMBER_VALUE = 6;
       /**
        * <pre>
        * Represents the marital status of an individual
        * </pre>
        *
-       * <code>TYPE_MARITAL_STATUS = 8;</code>
+       * <code>TYPE_MARITAL_STATUS = 7;</code>
        */
-      public static final int TYPE_MARITAL_STATUS_VALUE = 8;
+      public static final int TYPE_MARITAL_STATUS_VALUE = 7;
       /**
        * <pre>
        * Represents additional information about an address
        * </pre>
        *
-       * <code>TYPE_EXTENDED_ADDRESS = 9;</code>
+       * <code>TYPE_EXTENDED_ADDRESS = 8;</code>
        */
-      public static final int TYPE_EXTENDED_ADDRESS_VALUE = 9;
+      public static final int TYPE_EXTENDED_ADDRESS_VALUE = 8;
       /**
        * <pre>
        * Represents additional information about an address (second part)
        * </pre>
        *
-       * <code>TYPE_EXTENDED_ADDRESS_SPECIFICS = 10;</code>
+       * <code>TYPE_EXTENDED_ADDRESS_SPECIFICS = 9;</code>
        */
-      public static final int TYPE_EXTENDED_ADDRESS_SPECIFICS_VALUE = 10;
+      public static final int TYPE_EXTENDED_ADDRESS_SPECIFICS_VALUE = 9;
       /**
        * <pre>
        * Represents a classification or category
        * </pre>
        *
-       * <code>TYPE_CLASS = 11;</code>
+       * <code>TYPE_CLASS = 10;</code>
        */
-      public static final int TYPE_CLASS_VALUE = 11;
+      public static final int TYPE_CLASS_VALUE = 10;
       /**
        * <pre>
        * Represents conditions or restrictions
        * </pre>
        *
-       * <code>TYPE_CONDITIONS = 12;</code>
+       * <code>TYPE_CONDITIONS = 11;</code>
        */
-      public static final int TYPE_CONDITIONS_VALUE = 12;
+      public static final int TYPE_CONDITIONS_VALUE = 11;
       /**
        * <pre>
        * Represents endorsements or special permissions
        * </pre>
        *
-       * <code>TYPE_ENDORSEMENTS = 13;</code>
+       * <code>TYPE_ENDORSEMENTS = 12;</code>
        */
-      public static final int TYPE_ENDORSEMENTS_VALUE = 13;
+      public static final int TYPE_ENDORSEMENTS_VALUE = 12;
       /**
        * <pre>
        * Represents the type of licence or permit
        * </pre>
        *
-       * <code>TYPE_DRIVERS_LICENSE_TYPE = 14;</code>
+       * <code>TYPE_DRIVERS_LICENSE_TYPE = 13;</code>
        */
-      public static final int TYPE_DRIVERS_LICENSE_TYPE_VALUE = 14;
+      public static final int TYPE_DRIVERS_LICENSE_TYPE_VALUE = 13;
       /**
        * <pre>
        * Represents the full name of an individual
        * </pre>
        *
-       * <code>TYPE_FULL_NAME = 15;</code>
+       * <code>TYPE_FULL_NAME = 14;</code>
        */
-      public static final int TYPE_FULL_NAME_VALUE = 15;
+      public static final int TYPE_FULL_NAME_VALUE = 14;
       /**
        * <pre>
        * Represents the place of birth of an individual
        * </pre>
        *
-       * <code>TYPE_PLACE_OF_BIRTH = 16;</code>
+       * <code>TYPE_PLACE_OF_BIRTH = 15;</code>
        */
-      public static final int TYPE_PLACE_OF_BIRTH_VALUE = 16;
+      public static final int TYPE_PLACE_OF_BIRTH_VALUE = 15;
       /**
        * <pre>
        * Represents the profession or occupation of an individual
        * </pre>
        *
-       * <code>TYPE_PROFESSION = 17;</code>
+       * <code>TYPE_PROFESSION = 16;</code>
        */
-      public static final int TYPE_PROFESSION_VALUE = 17;
+      public static final int TYPE_PROFESSION_VALUE = 16;
       /**
        * <pre>
        * Represents the employer of an individual
        * </pre>
        *
-       * <code>TYPE_EMPLOYER = 18;</code>
+       * <code>TYPE_EMPLOYER = 17;</code>
        */
-      public static final int TYPE_EMPLOYER_VALUE = 18;
+      public static final int TYPE_EMPLOYER_VALUE = 17;
       /**
        * <pre>
        * Represents additional information about a name
        * </pre>
        *
-       * <code>TYPE_EXTENDED_NAME = 19;</code>
+       * <code>TYPE_EXTENDED_NAME = 18;</code>
        */
-      public static final int TYPE_EXTENDED_NAME_VALUE = 19;
+      public static final int TYPE_EXTENDED_NAME_VALUE = 18;
       /**
        * <pre>
        * Represents the father's name of an individual
        * </pre>
        *
-       * <code>TYPE_FATHERS_NAME = 20;</code>
+       * <code>TYPE_FATHERS_NAME = 19;</code>
        */
-      public static final int TYPE_FATHERS_NAME_VALUE = 20;
+      public static final int TYPE_FATHERS_NAME_VALUE = 19;
       /**
        * <pre>
        * Represents the mother's name of an individual
        * </pre>
        *
-       * <code>TYPE_MOTHERS_NAME = 21;</code>
+       * <code>TYPE_MOTHERS_NAME = 20;</code>
        */
-      public static final int TYPE_MOTHERS_NAME_VALUE = 21;
+      public static final int TYPE_MOTHERS_NAME_VALUE = 20;
       /**
        * <pre>
        * Represents the race or ethnicity of an individual
        * </pre>
        *
-       * <code>TYPE_RACE = 22;</code>
+       * <code>TYPE_RACE = 21;</code>
        */
-      public static final int TYPE_RACE_VALUE = 22;
+      public static final int TYPE_RACE_VALUE = 21;
       /**
        * <pre>
        * Represents the residential status of an individual
        * </pre>
        *
-       * <code>TYPE_RESIDENTIAL_TYPE = 23;</code>
+       * <code>TYPE_RESIDENTIAL_TYPE = 22;</code>
        */
-      public static final int TYPE_RESIDENTIAL_TYPE_VALUE = 23;
+      public static final int TYPE_RESIDENTIAL_TYPE_VALUE = 22;
       /**
        * <pre>
        * Represents restrictions or limitations
        * </pre>
        *
-       * <code>TYPE_RESTRICTIONS = 24;</code>
+       * <code>TYPE_RESTRICTIONS = 23;</code>
        */
-      public static final int TYPE_RESTRICTIONS_VALUE = 24;
+      public static final int TYPE_RESTRICTIONS_VALUE = 23;
       /**
        * <pre>
        * Represents the blood type of an individual
        * </pre>
        *
-       * <code>TYPE_BLOOD_TYPE = 25;</code>
+       * <code>TYPE_BLOOD_TYPE = 24;</code>
        */
-      public static final int TYPE_BLOOD_TYPE_VALUE = 25;
+      public static final int TYPE_BLOOD_TYPE_VALUE = 24;
       /**
        * <pre>
        * Represents an additional numbers/codes that can appear on some documents
        * </pre>
        *
-       * <code>TYPE_NUMBER = 26;</code>
+       * <code>TYPE_NUMBER = 25;</code>
        */
-      public static final int TYPE_NUMBER_VALUE = 26;
+      public static final int TYPE_NUMBER_VALUE = 25;
 
 
       public final int getNumber() {
@@ -3124,29 +3108,28 @@ public final class Fields {
           case 1: return TYPE_LAST_NAME;
           case 2: return TYPE_NATIONALITY;
           case 3: return TYPE_DOCUMENT_IDENTITY_NUMBER;
-          case 4: return TYPE_SEX;
-          case 5: return TYPE_ISSUING_AUTHORITY;
-          case 6: return TYPE_ADDRESS;
-          case 7: return TYPE_PERSONAL_IDENTITY_NUMBER;
-          case 8: return TYPE_MARITAL_STATUS;
-          case 9: return TYPE_EXTENDED_ADDRESS;
-          case 10: return TYPE_EXTENDED_ADDRESS_SPECIFICS;
-          case 11: return TYPE_CLASS;
-          case 12: return TYPE_CONDITIONS;
-          case 13: return TYPE_ENDORSEMENTS;
-          case 14: return TYPE_DRIVERS_LICENSE_TYPE;
-          case 15: return TYPE_FULL_NAME;
-          case 16: return TYPE_PLACE_OF_BIRTH;
-          case 17: return TYPE_PROFESSION;
-          case 18: return TYPE_EMPLOYER;
-          case 19: return TYPE_EXTENDED_NAME;
-          case 20: return TYPE_FATHERS_NAME;
-          case 21: return TYPE_MOTHERS_NAME;
-          case 22: return TYPE_RACE;
-          case 23: return TYPE_RESIDENTIAL_TYPE;
-          case 24: return TYPE_RESTRICTIONS;
-          case 25: return TYPE_BLOOD_TYPE;
-          case 26: return TYPE_NUMBER;
+          case 4: return TYPE_ISSUING_AUTHORITY;
+          case 5: return TYPE_ADDRESS;
+          case 6: return TYPE_PERSONAL_IDENTITY_NUMBER;
+          case 7: return TYPE_MARITAL_STATUS;
+          case 8: return TYPE_EXTENDED_ADDRESS;
+          case 9: return TYPE_EXTENDED_ADDRESS_SPECIFICS;
+          case 10: return TYPE_CLASS;
+          case 11: return TYPE_CONDITIONS;
+          case 12: return TYPE_ENDORSEMENTS;
+          case 13: return TYPE_DRIVERS_LICENSE_TYPE;
+          case 14: return TYPE_FULL_NAME;
+          case 15: return TYPE_PLACE_OF_BIRTH;
+          case 16: return TYPE_PROFESSION;
+          case 17: return TYPE_EMPLOYER;
+          case 18: return TYPE_EXTENDED_NAME;
+          case 19: return TYPE_FATHERS_NAME;
+          case 20: return TYPE_MOTHERS_NAME;
+          case 21: return TYPE_RACE;
+          case 22: return TYPE_RESIDENTIAL_TYPE;
+          case 23: return TYPE_RESTRICTIONS;
+          case 24: return TYPE_BLOOD_TYPE;
+          case 25: return TYPE_NUMBER;
           default: return null;
         }
       }
@@ -8858,54 +8841,54 @@ public final class Fields {
       "ge\030\004 \001(\0132\025.proto.ddx.v1.PolygonR\025detecti" +
       "onOnInputImage\022T\n\035position_on_detected_d" +
       "ocument\030\005 \001(\0132\021.proto.ddx.v1.BoxR\032positi" +
-      "onOnDetectedDocument\"\321\006\n\tTextField\0220\n\004ty" +
+      "onOnDetectedDocument\"\303\006\n\tTextField\0220\n\004ty" +
       "pe\030\001 \001(\0162\034.proto.ddx.v1.TextField.TypeR\004" +
       "type\022\024\n\005value\030\002 \001(\tR\005value\0222\n\010alphabet\030\003" +
       " \001(\0162\026.proto.ddx.v1.AlphabetR\010alphabet\022\024" +
       "\n\005image\030\004 \001(\014R\005image\0222\n\010location\030\005 \001(\0132\026" +
-      ".proto.ddx.v1.LocationR\010location\"\375\004\n\004Typ" +
+      ".proto.ddx.v1.LocationR\010location\"\357\004\n\004Typ" +
       "e\022\023\n\017TYPE_FIRST_NAME\020\000\022\022\n\016TYPE_LAST_NAME" +
       "\020\001\022\024\n\020TYPE_NATIONALITY\020\002\022!\n\035TYPE_DOCUMEN" +
-      "T_IDENTITY_NUMBER\020\003\022\014\n\010TYPE_SEX\020\004\022\032\n\026TYP" +
-      "E_ISSUING_AUTHORITY\020\005\022\020\n\014TYPE_ADDRESS\020\006\022" +
-      "!\n\035TYPE_PERSONAL_IDENTITY_NUMBER\020\007\022\027\n\023TY" +
-      "PE_MARITAL_STATUS\020\010\022\031\n\025TYPE_EXTENDED_ADD" +
-      "RESS\020\t\022#\n\037TYPE_EXTENDED_ADDRESS_SPECIFIC" +
-      "S\020\n\022\016\n\nTYPE_CLASS\020\013\022\023\n\017TYPE_CONDITIONS\020\014" +
-      "\022\025\n\021TYPE_ENDORSEMENTS\020\r\022\035\n\031TYPE_DRIVERS_" +
-      "LICENSE_TYPE\020\016\022\022\n\016TYPE_FULL_NAME\020\017\022\027\n\023TY" +
-      "PE_PLACE_OF_BIRTH\020\020\022\023\n\017TYPE_PROFESSION\020\021" +
-      "\022\021\n\rTYPE_EMPLOYER\020\022\022\026\n\022TYPE_EXTENDED_NAM" +
-      "E\020\023\022\025\n\021TYPE_FATHERS_NAME\020\024\022\025\n\021TYPE_MOTHE" +
-      "RS_NAME\020\025\022\r\n\tTYPE_RACE\020\026\022\031\n\025TYPE_RESIDEN" +
-      "TIAL_TYPE\020\027\022\025\n\021TYPE_RESTRICTIONS\020\030\022\023\n\017TY" +
-      "PE_BLOOD_TYPE\020\031\022\017\n\013TYPE_NUMBER\020\032\"\316\003\n\tDat" +
-      "eField\0220\n\004type\030\001 \001(\0162\034.proto.ddx.v1.Date" +
-      "Field.TypeR\004type\0220\n\004date\030\002 \001(\0132\034.proto.d" +
-      "dx.v1.DateField.DateR\004date\022\024\n\005value\030\003 \001(" +
-      "\tR\005value\0222\n\010alphabet\030\004 \001(\0162\026.proto.ddx.v" +
-      "1.AlphabetR\010alphabet\022\024\n\005image\030\005 \001(\014R\005ima" +
-      "ge\0222\n\010location\030\006 \001(\0132\026.proto.ddx.v1.Loca" +
-      "tionR\010location\032B\n\004Date\022\022\n\004year\030\001 \001(\005R\004ye" +
-      "ar\022\024\n\005month\030\002 \001(\005R\005month\022\020\n\003day\030\003 \001(\005R\003d" +
-      "ay\"\204\001\n\004Type\022\026\n\022TYPE_DATE_OF_BIRTH\020\000\022\023\n\017T" +
-      "YPE_ISSUE_DATE\020\001\022\024\n\020TYPE_EXPIRY_DATE\020\002\022\035" +
-      "\n\031TYPE_CLASS_EFFECTIVE_DATE\020\003\022\032\n\026TYPE_CL" +
-      "ASS_EXPIRY_DATE\020\004\"\274\001\n\013VisualField\0222\n\004typ" +
-      "e\030\001 \001(\0162\036.proto.ddx.v1.VisualField.TypeR" +
-      "\004type\022\024\n\005image\030\002 \001(\014R\005image\0222\n\010location\030" +
-      "\003 \001(\0132\026.proto.ddx.v1.LocationR\010location\"" +
-      "/\n\004Type\022\023\n\017TYPE_FACE_PHOTO\020\000\022\022\n\016TYPE_SIG" +
-      "NATURE\020\001\"\366\001\n\010SexField\022,\n\003sex\030\001 \001(\0162\032.pro" +
-      "to.ddx.v1.SexField.SexR\003sex\022\024\n\005value\030\002 \001" +
-      "(\tR\005value\0222\n\010alphabet\030\003 \001(\0162\026.proto.ddx." +
-      "v1.AlphabetR\010alphabet\022\024\n\005image\030\004 \001(\014R\005im" +
-      "age\0222\n\010location\030\005 \001(\0132\026.proto.ddx.v1.Loc" +
-      "ationR\010location\"(\n\003Sex\022\013\n\007UNKNOWN\020\000\022\010\n\004M" +
-      "ALE\020\001\022\n\n\006FEMALE\020\002*J\n\010Alphabet\022\022\n\016ALPHABE" +
-      "T_LATIN\020\000\022\025\n\021ALPHABET_CYRILLIC\020\001\022\023\n\017ALPH" +
-      "ABET_ARABIC\020\002B4Z2github.com/veridil/id-e" +
-      "xtract-service/proto/ddx/v1b\006proto3"
+      "T_IDENTITY_NUMBER\020\003\022\032\n\026TYPE_ISSUING_AUTH" +
+      "ORITY\020\004\022\020\n\014TYPE_ADDRESS\020\005\022!\n\035TYPE_PERSON" +
+      "AL_IDENTITY_NUMBER\020\006\022\027\n\023TYPE_MARITAL_STA" +
+      "TUS\020\007\022\031\n\025TYPE_EXTENDED_ADDRESS\020\010\022#\n\037TYPE" +
+      "_EXTENDED_ADDRESS_SPECIFICS\020\t\022\016\n\nTYPE_CL" +
+      "ASS\020\n\022\023\n\017TYPE_CONDITIONS\020\013\022\025\n\021TYPE_ENDOR" +
+      "SEMENTS\020\014\022\035\n\031TYPE_DRIVERS_LICENSE_TYPE\020\r" +
+      "\022\022\n\016TYPE_FULL_NAME\020\016\022\027\n\023TYPE_PLACE_OF_BI" +
+      "RTH\020\017\022\023\n\017TYPE_PROFESSION\020\020\022\021\n\rTYPE_EMPLO" +
+      "YER\020\021\022\026\n\022TYPE_EXTENDED_NAME\020\022\022\025\n\021TYPE_FA" +
+      "THERS_NAME\020\023\022\025\n\021TYPE_MOTHERS_NAME\020\024\022\r\n\tT" +
+      "YPE_RACE\020\025\022\031\n\025TYPE_RESIDENTIAL_TYPE\020\026\022\025\n" +
+      "\021TYPE_RESTRICTIONS\020\027\022\023\n\017TYPE_BLOOD_TYPE\020" +
+      "\030\022\017\n\013TYPE_NUMBER\020\031\"\316\003\n\tDateField\0220\n\004type" +
+      "\030\001 \001(\0162\034.proto.ddx.v1.DateField.TypeR\004ty" +
+      "pe\0220\n\004date\030\002 \001(\0132\034.proto.ddx.v1.DateFiel" +
+      "d.DateR\004date\022\024\n\005value\030\003 \001(\tR\005value\0222\n\010al" +
+      "phabet\030\004 \001(\0162\026.proto.ddx.v1.AlphabetR\010al" +
+      "phabet\022\024\n\005image\030\005 \001(\014R\005image\0222\n\010location" +
+      "\030\006 \001(\0132\026.proto.ddx.v1.LocationR\010location" +
+      "\032B\n\004Date\022\022\n\004year\030\001 \001(\005R\004year\022\024\n\005month\030\002 " +
+      "\001(\005R\005month\022\020\n\003day\030\003 \001(\005R\003day\"\204\001\n\004Type\022\026\n" +
+      "\022TYPE_DATE_OF_BIRTH\020\000\022\023\n\017TYPE_ISSUE_DATE" +
+      "\020\001\022\024\n\020TYPE_EXPIRY_DATE\020\002\022\035\n\031TYPE_CLASS_E" +
+      "FFECTIVE_DATE\020\003\022\032\n\026TYPE_CLASS_EXPIRY_DAT" +
+      "E\020\004\"\274\001\n\013VisualField\0222\n\004type\030\001 \001(\0162\036.prot" +
+      "o.ddx.v1.VisualField.TypeR\004type\022\024\n\005image" +
+      "\030\002 \001(\014R\005image\0222\n\010location\030\003 \001(\0132\026.proto." +
+      "ddx.v1.LocationR\010location\"/\n\004Type\022\023\n\017TYP" +
+      "E_FACE_PHOTO\020\000\022\022\n\016TYPE_SIGNATURE\020\001\"\366\001\n\010S" +
+      "exField\022,\n\003sex\030\001 \001(\0162\032.proto.ddx.v1.SexF" +
+      "ield.SexR\003sex\022\024\n\005value\030\002 \001(\tR\005value\0222\n\010a" +
+      "lphabet\030\003 \001(\0162\026.proto.ddx.v1.AlphabetR\010a" +
+      "lphabet\022\024\n\005image\030\004 \001(\014R\005image\0222\n\010locatio" +
+      "n\030\005 \001(\0132\026.proto.ddx.v1.LocationR\010locatio" +
+      "n\"(\n\003Sex\022\013\n\007UNKNOWN\020\000\022\010\n\004MALE\020\001\022\n\n\006FEMAL" +
+      "E\020\002*J\n\010Alphabet\022\022\n\016ALPHABET_LATIN\020\000\022\025\n\021A" +
+      "LPHABET_CYRILLIC\020\001\022\023\n\017ALPHABET_ARABIC\020\002B" +
+      "4Z2github.com/veridil/id-extract-service" +
+      "/proto/ddx/v1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

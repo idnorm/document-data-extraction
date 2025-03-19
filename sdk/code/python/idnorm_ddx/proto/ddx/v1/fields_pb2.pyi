@@ -51,7 +51,6 @@ class TextField(_message.Message):
         TYPE_LAST_NAME: _ClassVar[TextField.Type]
         TYPE_NATIONALITY: _ClassVar[TextField.Type]
         TYPE_DOCUMENT_IDENTITY_NUMBER: _ClassVar[TextField.Type]
-        TYPE_SEX: _ClassVar[TextField.Type]
         TYPE_ISSUING_AUTHORITY: _ClassVar[TextField.Type]
         TYPE_ADDRESS: _ClassVar[TextField.Type]
         TYPE_PERSONAL_IDENTITY_NUMBER: _ClassVar[TextField.Type]
@@ -78,7 +77,6 @@ class TextField(_message.Message):
     TYPE_LAST_NAME: TextField.Type
     TYPE_NATIONALITY: TextField.Type
     TYPE_DOCUMENT_IDENTITY_NUMBER: TextField.Type
-    TYPE_SEX: TextField.Type
     TYPE_ISSUING_AUTHORITY: TextField.Type
     TYPE_ADDRESS: TextField.Type
     TYPE_PERSONAL_IDENTITY_NUMBER: TextField.Type
