@@ -31,7 +31,6 @@ to easily integrate with your python codebase.
 You can see what is the expected usage in the snippet bellow.
 
 ```python
-
 import asyncio
 from typing import Tuple
 

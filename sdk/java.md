@@ -31,7 +31,7 @@ Examples of both `pom.xml` and `build.gradle`.
         <dependency>
             <groupId>com.idnorm</groupId>
             <artifactId>ddx</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.2</version>
         </dependency>
     </dependencies>
 </project>
@@ -47,7 +47,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.idnorm:ddx:1.1.0'
+    implementation 'com.idnorm:ddx:1.1.2'
 }
 ```
 
