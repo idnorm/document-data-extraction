@@ -59,7 +59,7 @@ Same as with gRPC, in the documentation you can find all the details about avail
 
 ### Example
 
-Here we provide a simple bash script you can use to test out and send "one off" requests. To the
+[Here](send-rest-request.sh) we provide a simple bash script you can use to test out and send "one off" requests. To the
 image quality check API REST endpoint.
 
 If you want to use the Cloud SaaS endpoint, you need to provide your license key as an environment variable
