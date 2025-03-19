@@ -6,7 +6,7 @@ in your codebase of choice.
 Currently, we release and maintain:
  - [Go](go.md)
  - [Java](java.md)
- - [Python](code/python/python.md)
+ - [Python](code/python/README.md)
 
 Comming soon:
  - C++
