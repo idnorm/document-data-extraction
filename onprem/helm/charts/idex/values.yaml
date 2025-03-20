@@ -26,7 +26,7 @@ image:
   # -- Container image repository
   repository: us-central1-docker.pkg.dev/idnorm/idnorm-pub/ddx
   # -- Container image tag
-  tag: v1.8.1
+  tag: v1.8.12
   # -- Container image pull policy
   pullPolicy: IfNotPresent
 # HPA configurations
