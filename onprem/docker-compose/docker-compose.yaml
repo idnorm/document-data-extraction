@@ -59,7 +59,7 @@ services:
           cpus: 2.0
 
   extraction:
-    image: us-central1-docker.pkg.dev/idnorm/idnorm-pub/idex:v${IDEX_VERSION}
+    image: us-central1-docker.pkg.dev/idnorm/idnorm-pub/ddx:v${IDEX_VERSION}
     container_name: extraction
     depends_on:
       - serving
