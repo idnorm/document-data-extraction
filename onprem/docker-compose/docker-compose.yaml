@@ -1,19 +1,18 @@
 services:
   model-dl:
     image: google/cloud-sdk:slim
-    container_name: model-dl
     volumes:
       - models_enc:/models
     entrypoint: /bin/bash
     command: -c "
-      if [ ! -d /models/f4e44a731f7df858 ] && \
-      [ ! -d /models/6f697701fc10ce13 ] && \
-      [ ! -d /models/fc0dfb12fad78f07 ] && \
-      [ ! -d /models/750dac66af62e6b2 ] && \
-      [ ! -d /models/2ac3470c50c2bd40 ] && \
-      [ ! -d /models/26a3a230499ebb48 ] && \
-      [ ! -d /models/077c98276e7ae1a0 ] && \
-      [ ! -d /models/ba5c6de27f689d2d ] && \
+      if [ ! -d /models/f4e44a731f7df858 ] || \
+      [ ! -d /models/6f697701fc10ce13 ] || \
+      [ ! -d /models/fc0dfb12fad78f07 ] || \
+      [ ! -d /models/750dac66af62e6b2 ] || \
+      [ ! -d /models/2ac3470c50c2bd40 ] || \
+      [ ! -d /models/26a3a230499ebb48 ] || \
+      [ ! -d /models/077c98276e7ae1a0 ] || \
+      [ ! -d /models/ba5c6de27f689d2d ] || \
       [ ! -d /models/3c27c64bd11d5643 ]; then \
       gsutil -m cp -r \
       gs://idnorm-models-enc/f4e44a731f7df858 \
@@ -35,7 +34,6 @@ services:
     depends_on:
       model-dl:
         condition: service_completed_successfully
-    container_name: serving
     environment:
       VD_DEC: "1"
     command:
@@ -47,8 +45,6 @@ services:
       # setting this to expected number of max concurrent requests x 2 to
       # adjust for "waiting" for resources to become available
       - "--grpc_max_threads=60"
-    ports:
-      - "8500:8500" # Expose port 8500 (default port for TensorFlow Serving gRPC)
     volumes:
       - models_enc:/models # Use named volume 'models' instead of host mount
       - ./models.config:/config/model-config:ro
