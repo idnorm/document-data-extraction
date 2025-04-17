@@ -105,53 +105,6 @@
       },
       "title": "Date - message representing parsed date"
     },
-    "Pdf417BarcodeOptionalField": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "$ref": "#/definitions/Pdf417BarcodeOptionalFieldType"
-        },
-        "value": {
-          "type": "string"
-        }
-      },
-      "description": "Message representing an optional field with its type and value."
-    },
-    "Pdf417BarcodeOptionalFieldType": {
-      "type": "string",
-      "enum": [
-        "OPTIONAL_FIELD_TYPE_ADDRESS_STREET_2",
-        "OPTIONAL_FIELD_TYPE_HAIR_COLOR",
-        "OPTIONAL_FIELD_TYPE_PLACE_OF_BIRTH",
-        "OPTIONAL_FIELD_TYPE_AUDIT_INFORMATION",
-        "OPTIONAL_FIELD_TYPE_INVENTORY_CONTROL_NUMBER",
-        "OPTIONAL_FIELD_TYPE_ALIAS_FAMILY_NAME",
-        "OPTIONAL_FIELD_TYPE_ALIAS_GIVEN_NAME",
-        "OPTIONAL_FIELD_TYPE_ALIAS_SUFFIX_NAME",
-        "OPTIONAL_FIELD_TYPE_NAME_SUFFIX",
-        "OPTIONAL_FIELD_TYPE_PHYSICAL_DESCRIPTION_WEIGHT_RANGE",
-        "OPTIONAL_FIELD_TYPE_RACE_ETHNICITY",
-        "OPTIONAL_FIELD_TYPE_STANDARD_VEHICLE_CLASSIFICATION",
-        "OPTIONAL_FIELD_TYPE_STANDARD_ENDORSEMENT_CODE",
-        "OPTIONAL_FIELD_TYPE_STANDARD_RESTRICTION_CODE",
-        "OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_VEHICLE_CLASSIFICATION_DESCRIPTION",
-        "OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_ENDORSEMENT_CODE_DESCRIPTION",
-        "OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_RESTRICTION_CODE_DESCRIPTION",
-        "OPTIONAL_FIELD_TYPE_COMPLIANCE_TYPE",
-        "OPTIONAL_FIELD_TYPE_CARD_REVISION_DATE",
-        "OPTIONAL_FIELD_TYPE_HAZMAT_ENDORSEMENT_EXPIRATION_DATE",
-        "OPTIONAL_FIELD_TYPE_LIMITED_DURATION_DOCUMENT_INDICATOR",
-        "OPTIONAL_FIELD_TYPE_WEIGHT_POUNDS",
-        "OPTIONAL_FIELD_TYPE_WEIGHT_KILOGRAMS",
-        "OPTIONAL_FIELD_TYPE_UNDER_18_UNTIL_DATE",
-        "OPTIONAL_FIELD_TYPE_UNDER_19_UNTIL_DATE",
-        "OPTIONAL_FIELD_TYPE_UNDER_21_UNTIL_DATE",
-        "OPTIONAL_FIELD_TYPE_ORGAN_DONOR_INDICATOR",
-        "OPTIONAL_FIELD_TYPE_VETERAN_INDICATOR"
-      ],
-      "default": "OPTIONAL_FIELD_TYPE_ADDRESS_STREET_2",
-      "description": "OptionalFieldType enumeration for optional fields.\n\n - OPTIONAL_FIELD_TYPE_ADDRESS_STREET_2: Represents second line of street portion.\nDAH\n - OPTIONAL_FIELD_TYPE_HAIR_COLOR: Indicates hair color of cardholder.\nDAZ\n - OPTIONAL_FIELD_TYPE_PLACE_OF_BIRTH: Denotes country and municipality/state/province where born.\nDCI\n - OPTIONAL_FIELD_TYPE_AUDIT_INFORMATION: Identifies when, where, and by whom ID was made.\nDCJ\n - OPTIONAL_FIELD_TYPE_INVENTORY_CONTROL_NUMBER: String affixed to raw materials used in production.\nDCK\n - OPTIONAL_FIELD_TYPE_ALIAS_FAMILY_NAME: Represents other family names by which known.\nDBN\n - OPTIONAL_FIELD_TYPE_ALIAS_GIVEN_NAME: Indicates other given names by which known.\nDBG\n - OPTIONAL_FIELD_TYPE_ALIAS_SUFFIX_NAME: Represents other suffixes by which known.\nDBS\n - OPTIONAL_FIELD_TYPE_NAME_SUFFIX: Indicates suffix for name (e.g., Jr, Sr).\nDCU\n - OPTIONAL_FIELD_TYPE_PHYSICAL_DESCRIPTION_WEIGHT_RANGE: Approximate weight range of cardholder.\nDCE\n - OPTIONAL_FIELD_TYPE_RACE_ETHNICITY: Codes for race or ethnicity as defined in AAMVA D20.\nDCL\n - OPTIONAL_FIELD_TYPE_STANDARD_VEHICLE_CLASSIFICATION: Standard vehicle classification codes.\nDCM\n - OPTIONAL_FIELD_TYPE_STANDARD_ENDORSEMENT_CODE: Standard endorsement codes for cardholder.\nDCN\n - OPTIONAL_FIELD_TYPE_STANDARD_RESTRICTION_CODE: Standard restriction codes for cardholder.\nDCO\n - OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_VEHICLE_CLASSIFICATION_DESCRIPTION: Text explaining jurisdiction-specific vehicle classification codes.\nDCP\n - OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_ENDORSEMENT_CODE_DESCRIPTION: Text explaining jurisdiction-specific endorsement codes.\nDCQ\n - OPTIONAL_FIELD_TYPE_JURISDICTION_SPECIFIC_RESTRICTION_CODE_DESCRIPTION: Text describing jurisdiction-specific restriction codes.\nDCR\n - OPTIONAL_FIELD_TYPE_COMPLIANCE_TYPE: Indicates compliance status (“F”=compliant; “N”=non-compliant).\nDDA\n - OPTIONAL_FIELD_TYPE_CARD_REVISION_DATE: Date of most recent version change to DL/ID format.\nDDB\n - OPTIONAL_FIELD_TYPE_HAZMAT_ENDORSEMENT_EXPIRATION_DATE: When hazardous material endorsement expires.\nDDC\n - OPTIONAL_FIELD_TYPE_LIMITED_DURATION_DOCUMENT_INDICATOR: Indicates temporary lawful status (“1”).\nDDD\n - OPTIONAL_FIELD_TYPE_WEIGHT_POUNDS: Cardholder's weight in pounds.\nDAW\n - OPTIONAL_FIELD_TYPE_WEIGHT_KILOGRAMS: Cardholder's weight in kilograms.\nDAX\n - OPTIONAL_FIELD_TYPE_UNDER_18_UNTIL_DATE: Date when cardholder turns 18 years old.\nDDH\n - OPTIONAL_FIELD_TYPE_UNDER_19_UNTIL_DATE: Date when cardholder turns 19 years old.\nDDI\n - OPTIONAL_FIELD_TYPE_UNDER_21_UNTIL_DATE: Date when cardholder turns 21 years old.\nDDJ\n - OPTIONAL_FIELD_TYPE_ORGAN_DONOR_INDICATOR: Indicates organ donor status (“1”).\nDDK\n - OPTIONAL_FIELD_TYPE_VETERAN_INDICATOR: Indicates veteran status (“1”).\nDDL"
-    },
     "ScanConfigImgResolution": {
       "type": "object",
       "properties": {
@@ -732,12 +685,12 @@
           "description": "dateField holds detected document date fields.\nCompared to textual fields, they don't just hold textual information present on the document\nbut offer \"date\" in a structured parsed format (year, month, day) regardless of textual\nrepresentation."
         },
         "sexField": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1SexField"
-          },
-          "description": "sexField holds detected document gender fields\nCompared to textual fields, they don't just hold textual information present on the document\nbut offer gender information as a parsed enumeration."
+          "description": "sexField if successfully detected, holds read and parsed sex field\nCompared to textual fields, they don't just hold textual information present on the document\nbut offer gender information as a parsed enumeration.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1SexField"
+            }
+          ]
         },
         "mrz": {
           "title": "mrz holds the mrz data extracted from the image if one was found, empty otherwise",
@@ -1016,13 +969,117 @@
           "type": "string",
           "title": "MiddleNameTruncation indicates whether a field has been truncated: T = truncated,\nN = not truncated, U = unknown if truncated. (v. DDG)"
         },
-        "optionalFields": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/Pdf417BarcodeOptionalField"
-          },
-          "description": "Repeated field for optional fields."
+        "optionalFieldAddressStreet2": {
+          "type": "string",
+          "title": "Represents second line of street portion.\nDAH"
+        },
+        "optionalFieldHairColor": {
+          "type": "string",
+          "title": "Indicates hair color of cardholder.\nDAZ"
+        },
+        "optionalFieldPlaceOfBirth": {
+          "type": "string",
+          "title": "Denotes country and municipality/state/province where born.\nDCI"
+        },
+        "optionalFieldAuditInformation": {
+          "type": "string",
+          "title": "Identifies when, where, and by whom ID was made.\nDCJ"
+        },
+        "optionalFieldInventoryControlNumber": {
+          "type": "string",
+          "title": "String affixed to raw materials used in production.\nDCK"
+        },
+        "optionalFieldAliasFamilyName": {
+          "type": "string",
+          "title": "Represents other family names by which known.\nDBN"
+        },
+        "optionalFieldAliasGivenName": {
+          "type": "string",
+          "title": "Indicates other given names by which known.\nDBG"
+        },
+        "optionalFieldAliasSuffixName": {
+          "type": "string",
+          "title": "Represents other suffixes by which known.\nDBS"
+        },
+        "optionalFieldNameSuffix": {
+          "type": "string",
+          "title": "Indicates suffix for name (e.g., Jr, Sr).\nDCU"
+        },
+        "optionalFieldPhysicalDescriptionWeightRange": {
+          "type": "string",
+          "title": "Approximate weight range of cardholder.\nDCE"
+        },
+        "optionalFieldRaceEthnicity": {
+          "type": "string",
+          "title": "Codes for race or ethnicity as defined in AAMVA D20.\nDCL"
+        },
+        "optionalFieldStandardVehicleClassification": {
+          "type": "string",
+          "title": "Standard vehicle classification codes.\nDCM"
+        },
+        "optionalFieldStandardEndorsementCode": {
+          "type": "string",
+          "title": "Standard endorsement codes for cardholder.\nDCN"
+        },
+        "optionalFieldStandardRestrictionCode": {
+          "type": "string",
+          "title": "Standard restriction codes for cardholder.\nDCO"
+        },
+        "optionalFieldJurisdictionSpecificVehicleClassificationDescription": {
+          "type": "string",
+          "title": "Text explaining jurisdiction-specific vehicle classification codes.\nDCP"
+        },
+        "optionalFieldJurisdictionSpecificEndorsementCodeDescription": {
+          "type": "string",
+          "title": "Text explaining jurisdiction-specific endorsement codes.\nDCQ"
+        },
+        "optionalFieldJurisdictionSpecificRestrictionCodeDescription": {
+          "type": "string",
+          "title": "Text describing jurisdiction-specific restriction codes.\nDCR"
+        },
+        "optionalFieldComplianceType": {
+          "type": "string",
+          "title": "Indicates compliance status (“F”=compliant; “N”=non-compliant).\nDDA"
+        },
+        "optionalFieldCardRevisionDate": {
+          "type": "string",
+          "title": "Date of most recent version change to DL/ID format.\nDDB"
+        },
+        "optionalFieldHazmatEndorsementExpirationDate": {
+          "type": "string",
+          "title": "When hazardous material endorsement expires.\nDDC"
+        },
+        "optionalFieldLimitedDurationDocumentIndicator": {
+          "type": "string",
+          "title": "Indicates temporary lawful status (“1”).\nDDD"
+        },
+        "optionalFieldWeightPounds": {
+          "type": "string",
+          "title": "Cardholder's weight in pounds.\nDAW"
+        },
+        "optionalFieldWeightKilograms": {
+          "type": "string",
+          "title": "Cardholder's weight in kilograms.\nDAX"
+        },
+        "optionalFieldUnder18UntilDate": {
+          "type": "string",
+          "title": "Date when cardholder turns 18 years old.\nDDH"
+        },
+        "optionalFieldUnder19UntilDate": {
+          "type": "string",
+          "title": "Date when cardholder turns 19 years old.\nDDI"
+        },
+        "optionalFieldUnder21UntilDate": {
+          "type": "string",
+          "title": "Date when cardholder turns 21 years old.\nDDJ"
+        },
+        "optionalFieldOrganDonorIndicator": {
+          "type": "string",
+          "title": "Indicates organ donor status (“1”).\nDDK"
+        },
+        "optionalFieldVeteranIndicator": {
+          "type": "string",
+          "title": "Indicates veteran status (“1”).\nDDL"
         }
       },
       "description": "Pdf417Barcode - holds data extracted from PDF417 barcode detected on the document."
@@ -1293,25 +1350,13 @@
             }
           ]
         },
-        "value": {
-          "type": "string",
-          "title": "textValue - holds OCR-ed value of the field"
-        },
-        "alphabet": {
-          "$ref": "#/definitions/v1Alphabet"
-        },
-        "image": {
-          "type": "string",
-          "format": "byte",
-          "title": "optional, empty by default, returned if specified in the ScanDocumentRequest"
-        },
-        "location": {
-          "title": "EMPTY BY DEFAULT, the location of the field on the input image. Available depending\non user license plan",
-          "allOf": [
-            {
-              "$ref": "#/definitions/ddxv1Location"
-            }
-          ]
+        "segments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1TextSegment"
+          },
+          "title": "TextSegments holding \"raw\" detected and OCR-ed values for the sex field"
         }
       },
       "title": "SexField - holds gender information"
@@ -1382,6 +1427,37 @@
       ],
       "default": "TYPE_FIRST_NAME",
       "description": "Type - an enum specifying field type. Eg. \"First name\", \"Last name\", \"Address\", etc.\n\n - TYPE_FIRST_NAME: Represents the first name of an individual\n - TYPE_LAST_NAME: Represents the last name of an individual\n - TYPE_NATIONALITY: Represents the nationality of an individual\n - TYPE_DOCUMENT_IDENTITY_NUMBER: Represents the unique number assigned to a document\n - TYPE_ISSUING_AUTHORITY: Represents the authority that issued a document\n - TYPE_ADDRESS: Represents the address of an individual\n - TYPE_PERSONAL_IDENTITY_NUMBER: Represents a unique personal identification number, such as OIB\n - TYPE_MARITAL_STATUS: Represents the marital status of an individual\n - TYPE_EXTENDED_ADDRESS: Represents additional information about an address\n - TYPE_EXTENDED_ADDRESS_SPECIFICS: Represents additional information about an address (second part)\n - TYPE_CLASS: Represents a classification or category\n - TYPE_CONDITIONS: Represents conditions or restrictions\n - TYPE_ENDORSEMENTS: Represents endorsements or special permissions\n - TYPE_DRIVERS_LICENSE_TYPE: Represents the type of licence or permit\n - TYPE_FULL_NAME: Represents the full name of an individual\n - TYPE_PLACE_OF_BIRTH: Represents the place of birth of an individual\n - TYPE_PROFESSION: Represents the profession or occupation of an individual\n - TYPE_EMPLOYER: Represents the employer of an individual\n - TYPE_EXTENDED_NAME: Represents additional information about a name\n - TYPE_FATHERS_NAME: Represents the father's name of an individual\n - TYPE_MOTHERS_NAME: Represents the mother's name of an individual\n - TYPE_RACE: Represents the race or ethnicity of an individual\n - TYPE_RESIDENTIAL_TYPE: Represents the residential status of an individual\n - TYPE_RESTRICTIONS: Represents restrictions or limitations\n - TYPE_BLOOD_TYPE: Represents the blood type of an individual\n - TYPE_NUMBER: Represents an additional numbers/codes that can appear on some documents"
+    },
+    "v1TextSegment": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "title": "OCR-ed text value"
+        },
+        "alphabet": {
+          "title": "Alphabet - enum specifying the alphabet in the value field",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v1Alphabet"
+            }
+          ]
+        },
+        "Image": {
+          "type": "string",
+          "format": "byte",
+          "title": "optional, empty by default, returned if specified in the ScanDocumentRequest"
+        },
+        "location": {
+          "title": "EMPTY BY DEFAULT, the location of the field on the input image. Available depending\non user license plan",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ddxv1Location"
+            }
+          ]
+        }
+      },
+      "title": "TextSegment - holds information about a text segment"
     },
     "v1VisualField": {
       "type": "object",
