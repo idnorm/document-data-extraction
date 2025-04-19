@@ -25,7 +25,7 @@ services:
       gs://idnorm-models-enc/077c98276e7ae1a0 \
       gs://idnorm-models-enc/ba5c6de27f689d2d \
       gs://idnorm-models-enc/3c27c64bd11d5643 \
-      gs://idnorm-models/fe0a2140c6ad6f29 \
+      gs://idnorm-models-enc/fe0a2140c6ad6f29 \
       /models; \
       else \
       echo 'All model folders already exist, skipping copy.'; \
