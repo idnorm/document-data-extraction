@@ -13,7 +13,8 @@ services:
       [ ! -d /models/26a3a230499ebb48 ] || \
       [ ! -d /models/077c98276e7ae1a0 ] || \
       [ ! -d /models/ba5c6de27f689d2d ] || \
-      [ ! -d /models/3c27c64bd11d5643 ]; then \
+      [ ! -d /models/3c27c64bd11d5643 ] || \
+      [ ! -d /models/fe0a2140c6ad6f29 ]; then \
       gsutil -m cp -r \
       gs://idnorm-models-enc/f4e44a731f7df858 \
       gs://idnorm-models-enc/6f697701fc10ce13 \
@@ -24,6 +25,7 @@ services:
       gs://idnorm-models-enc/077c98276e7ae1a0 \
       gs://idnorm-models-enc/ba5c6de27f689d2d \
       gs://idnorm-models-enc/3c27c64bd11d5643 \
+      gs://idnorm-models/fe0a2140c6ad6f29 \
       /models; \
       else \
       echo 'All model folders already exist, skipping copy.'; \
