@@ -22,7 +22,7 @@ TMP_FILE=$(mktemp)
 # Write JSON payload with base64-encoded image
 {
   echo -n '{"imageJpeg": "'
-  base64 "$IMAGE_PATH" | tr -d '\n'
+  base64 -i "$IMAGE_PATH" | tr -d '\n'
   echo '"}'
 } > "$TMP_FILE"
 
